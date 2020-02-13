@@ -47,7 +47,7 @@ class SimilarityDetector:
         return good_matches
 
     def findSimilarities(self,a_imgPath1, a_imgPath2, a_outPathMatches,a_outPathOriginal,
-                         a_outPathNew, a_minHessian = 400, a_ratioThresh = 0.2):
+                         a_outPathNew, a_minHessian = 200, a_ratioThresh = 0.6):
         """
         Function using feature detection to find similarities between images
         :param a_imgPath1: path to first image
@@ -95,9 +95,9 @@ class SimilarityDetector:
         # matchTrain = cv.drawKeypoints(img2,kp2Matched,None,(255,0,0),4)
 
         # Draw boxes around key matches
-        bd = BoxDrawer(kp1Matched,30,img1,(0,0,0),10)
+        bd = BoxDrawer(kp1Matched,30,img1,(51,255,255),2)
         img1 = bd.img
-        bd = BoxDrawer(kp2Matched,30,img2,(0,0,0),10)
+        bd = BoxDrawer(kp2Matched,30,img2,(51,255,255),2)
         img2 = bd.img
 
         # write out images
@@ -108,14 +108,27 @@ class SimilarityDetector:
 
 if __name__ == "__main__":
 
-    # Paths for images to be compared
-    imgPath1 = "images/original_golden_bridge.jpg"
-    imgPath2 = "images/copy_paste.jpg"
+    # # Paths for images to be compared
+    # imgPath1 = "images/test_images/cells2.2.png"
+    # imgPath2 = "images/test_images/cells2.1.png"
+    #
+    # # outputPaths
+    # outPathMatches = 'images/cell_mapped_jt.jpg'
+    # outPathOriginal = 'images/cell_original_jt.jpg'
+    # outPathNew = 'images/cell_new_jt.jpg'
 
-    #outputPaths
-    outPathMatches = 'images/mappedMatches.jpg'
-    outPathOriginal = 'images/matchesOnOriginal.jpg'
-    outPathNew = 'images/matchesOnNew.jpg'
+    # # Paths for images to be compared
+    # imgPath1 = "images/another_cell_jt.png"
+    # imgPath2 = "images/another_cell_2_jt.png"
+
+    # Paths for images to be compared
+    imgPath1 = "images/third_jt.png"
+    imgPath2 = "images/fourth_jt.png"
+
+    # outputPaths
+    outPathMatches = 'images/cell_mapped_3_jt.jpg'
+    outPathOriginal = 'images/cell_original_3_jt.jpg'
+    outPathNew = 'images/cell_new_3_jt.jpg'
 
     # Create instance of class
     simDet = SimilarityDetector()

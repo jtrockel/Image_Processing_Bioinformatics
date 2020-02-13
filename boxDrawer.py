@@ -55,11 +55,11 @@ class BoxDrawer:
         toApp = []
         srtd = sorted(arr, key=lambda x: x[indToSort])
         for i in range(1,len(srtd)):
+            toApp.append(srtd[i-1])
             if srtd[i][indToSort] - srtd[i-1][indToSort] > self.winSize:
                 points.append(toApp)
                 toApp = []
-            else:
-                toApp.append(srtd[i-1])
+
         toApp.append(srtd[-1])
         points.append(toApp)
 
@@ -72,14 +72,19 @@ class BoxDrawer:
         :return: None, updated image is stored in self.img
         """
         p = self.findBoxes()
-        print(len(p))
         for points in p:
             xSorted = sorted(points, key=lambda x: x[0])
             ySorted = sorted(points, key=lambda x: x[1])
-            x0 = xSorted[0][0]
-            x1 = xSorted[-1][0]
-            y0 = ySorted[0][1]
-            y1 = ySorted[-1][1]
+            add = 5
+            if len(xSorted)==0:continue
+            # if len(xSorted) == 1:
+            #     if len(xSorted[0])==0: continue
+            #     add = 5
+
+            x0 = xSorted[0][0] - add
+            x1 = xSorted[-1][0] + add
+            y0 = ySorted[0][1] - add
+            y1 = ySorted[-1][1] + add
             cv.line(self.img, (int(x0), int(y0)), (int(x0), int(y1)), self.color,self.lineWidth)
             cv.line(self.img, (int(x1), int(y0)), (int(x1), int(y1)), self.color,self.lineWidth)
             cv.line(self.img, (int(x0), int(y0)), (int(x1), int(y0)), self.color,self.lineWidth)
