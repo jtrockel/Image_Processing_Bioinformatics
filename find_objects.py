@@ -1,11 +1,14 @@
 #TODO: in the lowe's test loop, iterate matches 'till i<7j, and include if dist = 0, remove  (likely means for same pic. to itself, always remove 1st match.
 
+#cells2  and cells19
+
+
 import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
 import sys
 
-from boxDrawer import BoxDrawer_version2
+from BoxDrawer_version2 import BoxDrawer
 
 MIN_MATCH_PER_CLUMP = 10   #Number of matches that must be found to keep a match.  (to keep a clump of points, we want more than one feature to match, right?)
 WINDOW_SIZE = 30   # how close matches need to be to each other to be considered part of a potential clump.
