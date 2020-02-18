@@ -1,5 +1,3 @@
-#TODO: in the lowe's test loop, iterate matches 'till i<7j, and include if dist = 0, remove  (likely means for same pic. to itself, always remove 1st match.
-
 #cells2  and cells19
 
 
@@ -8,19 +6,22 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 import sys
 
-from BoxDrawer_version2 import BoxDrawer
+from boxDrawer_version2 import BoxDrawer
 
 MIN_MATCH_PER_CLUMP = 10   #Number of matches that must be found to keep a match.  (to keep a clump of points, we want more than one feature to match, right?)
-WINDOW_SIZE = 30   # how close matches need to be to each other to be considered part of a potential clump.
+WINDOW_SIZE = 0.5   # how close matches need to be to each other to be considered part of a potential clump.
 NUMBER_OF_CLUMPS = 10   #how many clumps we are hoping to find, e.g. this would find up to but no more than 9 matches from any one point.
+
+LINE_THICKNESS = 2  # How thick the box class will draw our lines
 
 imgPath1 = sys.argv[1]
 imgPath2 = sys.argv[2]
 
 #if I need to implement something different if they are the same; not being used right now
-#sameImage = False
+
+#start_index = 0
 #if sys.argv[3] == "Y" or sys.argv[3] == "y":
-#    sameImage = True
+#   start_index = 1
 
 #TODO do the 0's make this B&W? is that bad?  should we do that to compare but print in color?
 img1 = cv.imread(imgPath1) # queryImage
@@ -38,7 +39,7 @@ kp2, des2 = sift.detectAndCompute(img2,None)
 #iterate over pictures finding the next best clump until all clumps have been found:
 all_clumps = []  #this will store key points of the query Image
 foundClump = True  #this will run our loop
-bd = BoxDrawer(WINDOW_SIZE,img1,(0,255,0),10)  #this will let us find, store, and draw clumps
+bd = BoxDrawer(WINDOW_SIZE,img1,(0,255,0),LINE_THICKNESS)  #this will let us find, store, and draw clumps
     
     
     
@@ -59,13 +60,14 @@ for match in matches:
     q_temp_matches = []
     t_temp_matches = []
     for i in range(len(match)-1):
+        if kp1[match[i].queryIdx].pt == kp2[match[i].trainIdx].pt:
+            continue
+        q_temp_matches.append(match[i].queryIdx)
+        t_temp_matches.append(match[i].trainIdx)
         if match[i].distance < 0.7*match[i+1].distance:
             q_good_matches = q_good_matches + q_temp_matches
             t_good_matches = t_good_matches + t_temp_matches
             break
-        else:
-            q_temp_matches.append(match[i].queryIdx)
-            t_temp_matches.append(match[i].trainIdx)
 
 
             #np.delete(des1,m.queryIdx)
@@ -96,34 +98,13 @@ for clump in curr_clumps:
 #TODO: reiterate through other image so we don't have to do this twice
 #TODO: find a way to match clumps with traningimage clumps & group for box-drawing, color-coordinating purposes
 
-#leftovers from a tutorial
-'''if len(good)>MIN_MATCH_COUNT:
-    src_pts = np.float32([ kp1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
-    dst_pts = np.float32([ kp2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
-    M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC,5.0)
-    matchesMask = mask.ravel().tolist()
-    h,w = img1.shape  #and ,d
-    pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
-    dst = cv.perspectiveTransform(pts,M)
-    img2 = cv.polylines(img2,[np.int32(dst)],True,255,3, cv.LINE_AA)
-    else:
-    print( "Not enough matches are found - {}/{}".format(len(good), MIN_MATCH_COUNT) )
-    matchesMask = None'''
-
-'''draw_params = dict(matchColor = (0,255,0), # draw matches in green color
-    singlePointColor = None,
-    matchesMask = matchesMask, # draw only inliers
-    flags = 2)
-    img3 = cv.drawMatches(img1,kp1,img2,kp2,good,None,**draw_params)
-    plt.imshow(img3, 'gray'),plt.show()'''
-
 
 #prep boxes for img 1
 bd.drawBoxes(all_clumps)
 img1 = bd.img
 
 #prep boxes for img 2
-bd2 = BoxDrawer(WINDOW_SIZE,img2,(0,255,0),10)
+bd2 = BoxDrawer(WINDOW_SIZE,img2,(0,255,0),LINE_THICKNESS)
 clumps2 = bd2.findBoxes(bd2.get_x_y_and_index(kp2_temp))
 bd2.drawBoxes(clumps2)
 img2 = bd2.img
@@ -135,8 +116,8 @@ img2 = bd2.img
 
 #TODO: add drawing images to screen
 #TODO: make new names command line input
-cv.imwrite(imgPath1[:-4] + "_v2_bw_query.jpg", img1)
-cv.imwrite(imgPath2[:-4] + "_v2_bw_training.jpg", img2)
+cv.imwrite(imgPath1[:-4] + "_v2_query_2.jpg", img1)
+cv.imwrite(imgPath2[:-4] + "_v2_training_2.jpg", img2)
 
 cv.waitKey(0)
 
