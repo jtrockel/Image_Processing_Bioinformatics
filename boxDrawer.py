@@ -56,7 +56,7 @@ class BoxDrawer:
         srtd = sorted(arr, key=lambda x: x[indToSort])
         for i in range(1,len(srtd)):
             toApp.append(srtd[i-1])
-            if srtd[i][indToSort] - srtd[i-1][indToSort] > self.winSize:
+            if srtd[i][indToSort] - srtd[i-1][indToSort] > self.winSize: #winsize is threshold
                 points.append(toApp)
                 toApp = []
 
