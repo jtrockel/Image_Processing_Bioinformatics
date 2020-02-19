@@ -68,6 +68,12 @@ https://www.youtube.com/watch?v=9mQznoHk4mU&list=PL6Yc5OUgcoTlQuAdhtnByty15Ea9-c
 https://www.youtube.com/watch?v=ND5vGDNvN0s&list=PL6Yc5OUgcoTlQuAdhtnByty15Ea9-cQly&index=3
 https://www.youtube.com/watch?v=ADuHe4JNLXs&list=PL6Yc5OUgcoTlQuAdhtnByty15Ea9-cQly&index=4
 """
+def hconcat_resize_min(im_list, interpolation=cv.INTER_CUBIC):
+    w_min = min(im.shape[1] for im in im_list)
+    im_list_resize = [cv.resize(im, (w_min, int(im.shape[0] * w_min / im.shape[1])), interpolation=interpolation)
+        for im in im_list]
+    return cv.hconcat(im_list_resize)
+
 class SimilarityDetector:
 
     def __init__(self):
@@ -88,8 +94,9 @@ class SimilarityDetector:
                 good_matches.append(m)
         return good_matches
 
-    def findSimilarities(self,a_imgPath1, a_imgPath2, a_outPathMatches,a_outPathOriginal,
-                         a_outPathNew, a_outPathBoxes, a_minHessian = 200, a_ratioThresh = 0.6):
+
+
+    def findSimilarities(self,a_imgPath1, a_imgPath2, a_outPathMatches, a_outPathBoxes, a_minHessian = 200, a_ratioThresh = 0.6):
         """
         Function using feature detection to find similarities between images
         :param a_imgPath1: path to first image
@@ -131,35 +138,34 @@ class SimilarityDetector:
         # matchTrain = cv.drawKeypoints(img2,kp2Matched,None,(255,0,0),4)
 
         # Draw boxes around key matches
-        bd = BoxDrawer(kp1Matched,30,img1,(51,255,255),2)
+        bd = BoxDrawer(kp1Matched,30,img1,(0,255,0),5)
         img1 = bd.img
-        bd = BoxDrawer(kp2Matched,30,img2,(51,255,255),2)
+        bd = BoxDrawer(kp2Matched,30,img2,(0,255,0),5)
         img2 = bd.img
 
-        combinedimg = np.empty((max(img1.shape[0], img2.shape[0]), img1.shape[1]+img2.shape[1], 3), dtype=np.uint8)
+        #concatenate our 2 images together
+        combinedimg = hconcat_resize_min([img1,img2]) #make sure that images have the same dimensions
 
         # write out images
         cv.imwrite(a_outPathMatches, img_matches)
-        cv.imwrite(a_outPathOriginal,img1)
-        cv.imwrite(a_outPathNew, img2)
         cv.imwrite(a_outPathBoxes, combinedimg)
+
+    
 
 
 if __name__ == "__main__":
 
     # # Paths for images to be compared
-    imgPath1 = "images/test_images/figure1/cells2.1.png"
-    imgPath2 = "images/test_images/figure1/cells2.2.png"
+    imgPath1 = "images/test_images/figure1/cells_19_3.png"
+    imgPath2 = "images/test_images/figure1/cells_19_4.png"
     
     # outputPaths
-    outPathMatches = 'images/ike_ans/sift2.1map.jpg'
-    outPathOriginal = 'images/ike_ans/sift2.2orig.jpg'
-    outPathNew = 'images/ike_ans/sift2.2new.jpg'
-    outPathBoxes = 'images/ike_ans/sift2.2boxes.jpg'
+    outPathMatches = 'images/ike_ans/sift19.2map.jpg'
+    outPathBoxes = 'images/ike_ans/sift19.2boxes.jpg'
 
     # Create instance of class
     simDet = SimilarityDetector()
 
     # Show similarities
-    simDet.findSimilarities(imgPath1, imgPath2,outPathMatches,outPathOriginal,outPathNew,outPathBoxes)
+    simDet.findSimilarities(imgPath1, imgPath2,outPathMatches,outPathBoxes)
 
