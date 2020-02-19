@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv
 from boxDrawer import BoxDrawer
+import sys
 from matplotlib import pyplot as plt
 
 class OrbAlgorithm:
@@ -22,15 +23,17 @@ class OrbAlgorithm:
     def findKeypointsForSingleImage(self, imgPath, numfeatures=1000):
         img = cv.imread(imgPath)
         orb = cv.ORB_create(nfeatures=numfeatures)
-        kp, des = orb.detectAndCompute(img, None)
+        #kp = orb.detect(img, None)
+        #kp, des = orb.compute(img, kp)
 
+        kp, des = orb.detectAndCompute(img, None)
         # img2 = cv.drawKeypoints(img,kp,None,color=(0,255,0), flags=0)
         # plt.imshow(img2),plt.show
 
         return kp, des, img
 
     def findSimilaritiesBetweenTwoImages(self, img1path, img2path, a_outPathOriginal,
-                                         a_outPathNew, numfeatures=1000, a_ratioThresh = 0.7):
+                                         a_outPathNew, numfeatures=10000, a_ratioThresh = 0.7):
 
         kp1, des1, img1 = self.findKeypointsForSingleImage(img1path, numfeatures)
         kp2, des2, img2 = self.findKeypointsForSingleImage(img2path, numfeatures)
@@ -167,10 +170,13 @@ print("Number of Keypoints Detected In The Query Image: ", len(test_keypoints))
 if __name__ == "__main__":
 
     # Paths for images to be compared
-    imgPath1 = "images/original_golden_bridge.jpg"
-    imgPath2 = "images/copy_paste.jpg"
-    outPathOriginal = "original.jpg"
-    outPathNew = "new.jpg"
+
+    imgPath1 = "images/test_images/figure1/cells19.2.png"
+    imgPath2 = "images/test_images/figure1/cells19.2.png"
+    #imgPath1 = "images/figure1/cells2.1.png"
+    #imgPath2 = "images/figure1/cells2.2.png"
+    outPathOriginal = "images/test_images/figure1/cells2.1_matchedOrb.png"
+    outPathNew = "images/test_images/figure1/cells2.2_matchedOrb.png"
 
     # Create instance of class
     orbObj = OrbAlgorithm()
@@ -179,4 +185,5 @@ if __name__ == "__main__":
     # img2 = cv.drawKeypoints(img,kp,None,color=(0,255,0), flags=0)
     # plt.imshow(img2),plt.show()
 
-    orbObj.findSimilaritiesBetweenTwoImages(imgPath1, imgPath2, numfeatures=10000, a_outPathOriginal=outPathOriginal, a_outPathNew=outPathNew)
+    orbObj.findSimilaritiesBetweenTwoImages(imgPath1, imgPath2, numfeatures=100000,
+                                            a_outPathOriginal=outPathOriginal, a_outPathNew=outPathNew)
