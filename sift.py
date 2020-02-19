@@ -89,7 +89,7 @@ class SimilarityDetector:
         return good_matches
 
     def findSimilarities(self,a_imgPath1, a_imgPath2, a_outPathMatches,a_outPathOriginal,
-                         a_outPathNew, a_minHessian = 200, a_ratioThresh = 0.6):
+                         a_outPathNew, a_outPathBoxes, a_minHessian = 200, a_ratioThresh = 0.6):
         """
         Function using feature detection to find similarities between images
         :param a_imgPath1: path to first image
@@ -136,26 +136,30 @@ class SimilarityDetector:
         bd = BoxDrawer(kp2Matched,30,img2,(51,255,255),2)
         img2 = bd.img
 
+        combinedimg = np.empty((max(img1.shape[0], img2.shape[0]), img1.shape[1]+img2.shape[1], 3), dtype=np.uint8)
+
         # write out images
         cv.imwrite(a_outPathMatches, img_matches)
         cv.imwrite(a_outPathOriginal,img1)
         cv.imwrite(a_outPathNew, img2)
+        cv.imwrite(a_outPathBoxes, combinedimg)
 
 
 if __name__ == "__main__":
 
     # # Paths for images to be compared
-    imgPath1 = "images/test_images/figure1/cells_19_1.png"
-    imgPath2 = "images/test_images/figure1/cells_19_2.png"
+    imgPath1 = "images/test_images/figure1/cells2.1.png"
+    imgPath2 = "images/test_images/figure1/cells2.2.png"
     
     # outputPaths
-    outPathMatches = 'images/sift19.1map.jpg'
-    outPathOriginal = 'images/sift19.1orig.jpg'
-    outPathNew = 'images/sift19.1new.jpg'
+    outPathMatches = 'images/ike_ans/sift2.1map.jpg'
+    outPathOriginal = 'images/ike_ans/sift2.2orig.jpg'
+    outPathNew = 'images/ike_ans/sift2.2new.jpg'
+    outPathBoxes = 'images/ike_ans/sift2.2boxes.jpg'
 
     # Create instance of class
     simDet = SimilarityDetector()
 
     # Show similarities
-    simDet.findSimilarities(imgPath1, imgPath2,outPathMatches,outPathOriginal,outPathNew)
+    simDet.findSimilarities(imgPath1, imgPath2,outPathMatches,outPathOriginal,outPathNew,outPathBoxes)
 
