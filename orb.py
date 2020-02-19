@@ -56,9 +56,9 @@ class OrbAlgorithm:
 
     def drawMatches(self, kp1, kp2, img1, img2, outPathOriginal, outPathNew):
         # Draw boxes around key matches
-        bd = BoxDrawer(kp1,30,img1,(51,255,255),2)
+        bd = BoxDrawer(kp1,100,img1,(0,255,0),5)
         img1 = bd.img
-        bd = BoxDrawer(kp2,30,img2,(51,255,255),2)
+        bd = BoxDrawer(kp2,100,img2,(0,255,0),5)
         img2 = bd.img
 
         # write out images
@@ -171,12 +171,12 @@ if __name__ == "__main__":
 
     # Paths for images to be compared
 
-    imgPath1 = "images/test_images/figure1/cells19.2.png"
-    imgPath2 = "images/test_images/figure1/cells19.2.png"
+    imgPath1 = "images/test_images/figure1/cells_19_3.png"
+    imgPath2 = "images/test_images/figure1/cells_19_4.png"
     #imgPath1 = "images/figure1/cells2.1.png"
     #imgPath2 = "images/figure1/cells2.2.png"
-    outPathOriginal = "images/test_images/figure1/cells2.1_matchedOrb.png"
-    outPathNew = "images/test_images/figure1/cells2.2_matchedOrb.png"
+    outPathOriginal = "images/test_images/figure1/cells_19_3_matchedOrb.png"
+    outPathNew = "images/test_images/figure1/cells_19_4_matchedOrb.png"
 
     # Create instance of class
     orbObj = OrbAlgorithm()
