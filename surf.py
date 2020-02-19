@@ -58,7 +58,7 @@ class SimilarityDetector:
             will be matched. The closer to 0, the fewer
         """
 
-        #-- Stop 0: Read images; convert to grayscale
+        #-- Step 0: Read images; convert to grayscale
         img1 = cv.imread(a_imgPath1)
         # img1= cv.cvtColor(img1,cv.COLOR_BGR2GRAY)
 
