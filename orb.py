@@ -171,12 +171,12 @@ if __name__ == "__main__":
 
     # Paths for images to be compared
 
-    imgPath1 = "images/test_images/figure1/cells_19_3.png"
-    imgPath2 = "images/test_images/figure1/cells_19_4.png"
+    imgPath1 = "images/test_images/figure1/cells_19_1.png"
+    imgPath2 = "images/test_images/figure1/cells_19_2.png"
     #imgPath1 = "images/figure1/cells2.1.png"
     #imgPath2 = "images/figure1/cells2.2.png"
-    outPathOriginal = "images/test_images/figure1/cells_19_3_matchedOrb.png"
-    outPathNew = "images/test_images/figure1/cells_19_4_matchedOrb.png"
+    outPathOriginal = "images/test_images/figure1/cells_19_1_matchedOrb.png"
+    outPathNew = "images/test_images/figure1/cells_19_2_matchedOrb.png"
 
     # Create instance of class
     orbObj = OrbAlgorithm()
