@@ -113,7 +113,7 @@ class SimilarityDetector:
 
 
         #-- Match descriptor vectors with a FLANN based matcher
-        #currently configured to work best with SURF but 
+        #currently configured to work best with SURF but also works well with SIFT
         matcher = cv.DescriptorMatcher_create(cv.DescriptorMatcher_FLANNBASED)
         matches = matcher.knnMatch(descriptors1, descriptors2, 2)
 
@@ -145,26 +145,13 @@ class SimilarityDetector:
 if __name__ == "__main__":
 
     # # Paths for images to be compared
-    imgPath1 = "images/test_images/cells2.2.png"
-    imgPath2 = "images/test_images/cells2.1.png"
-    #
-    # # outputPaths
-    # outPathMatches = 'images/cell_mapped_jt.jpg'
-    # outPathOriginal = 'images/cell_original_jt.jpg'
-    # outPathNew = 'images/cell_new_jt.jpg'
-
-    # # Paths for images to be compared
-    # imgPath1 = "images/another_cell_jt.png"
-    # imgPath2 = "images/another_cell_2_jt.png"
-
-    # Paths for images to be compared
-    #imgPath1 = "images/third_jt.png"
-    #imgPath2 = "images/fourth_jt.png"
-
+    imgPath1 = "images/test_images/figure1/cells_19_1.png"
+    imgPath2 = "images/test_images/figure1/cells_19_2.png"
+    
     # outputPaths
-    outPathMatches = 'images/ikemap.jpg'
-    outPathOriginal = 'images/ikeorig.jpg'
-    outPathNew = 'images/ikenew.jpg'
+    outPathMatches = 'images/sift19.1map.jpg'
+    outPathOriginal = 'images/sift19.1orig.jpg'
+    outPathNew = 'images/sift19.1new.jpg'
 
     # Create instance of class
     simDet = SimilarityDetector()
