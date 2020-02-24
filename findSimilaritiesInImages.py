@@ -7,7 +7,7 @@ from pprint import pprint
 import random
 from template import TemplateMatch
 from writeDefaultJson import WriteDefaultJson
-random.seed(0)
+
 
 class FindSimilarities:
 
@@ -81,7 +81,7 @@ class FindSimilarities:
         threshold = self.params["cor_thresh"]
         pathOut = self.params["outputPath1"]
         pathOut2 = self.params["outputPath2"]
-        tm = TemplateMatch(self.inputPath1,self.inputPath2,stepSize,winSize,threshold,pathOut,pathOut2, color = self.color)
+        tm = TemplateMatch(self.inputPath1,self.inputPath2,stepSize,winSize,threshold,pathOut,pathOut2, color = self.color, lineWidth=self.params["line_width"])
         tm.findAndDrawMatches()
 
     def findKeyPoints(self):
@@ -245,13 +245,15 @@ def main(jsonPath):
     :param jsonPath: path to json file
     :return:
     """
-    # writeDefaultJson(jsonPath)
+    writeDefaultJson(jsonPath)
     with open(jsonPath, 'r') as fp:
         data = json.load(fp)
     for key, dct in data.items():
+
         inputPath1 = dct["inputImg1"]
         inputPath2 = dct["inputImg2"]
         for k,v in dct["algorithms"].items():
+            random.seed(0)
             algorithm = k
             params = v
             cp = FindSimilarities(algorithm,params,inputPath1,inputPath2)

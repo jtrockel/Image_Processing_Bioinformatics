@@ -2,8 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04e28a65-4e9e-432d-a837-b69a0225563e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/boxDrawer.py" beforeDir="false" afterPath="$PROJECT_DIR$/boxDrawer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/surf.py" beforeDir="false" afterPath="$PROJECT_DIR$/surf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Image_Processing_Bioinformatics.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Image_Processing_Bioinformatics.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparison.json" beforeDir="false" afterPath="$PROJECT_DIR$/comparison.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_template.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_template.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_template.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_template.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_template.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_template.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findSimilaritiesInImages.py" beforeDir="false" afterPath="$PROJECT_DIR$/findSimilaritiesInImages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/writeDefaultJson.py" beforeDir="false" afterPath="$PROJECT_DIR$/writeDefaultJson.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +41,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/surf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+            <state relative-caret-position="360">
+              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -26,10 +54,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1335">
+              <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/writeDefaultJson.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boxDrawer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="83" column="36" lean-forward="true" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+            <state relative-caret-position="684">
+              <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -37,11 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-616">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
@@ -54,6 +100,8 @@
       <find>resize</find>
       <find>print</find>
       <find>pri</find>
+      <find>addtodict</find>
+      <find>template</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -62,9 +110,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/template.py" />
         <option value="$PROJECT_DIR$/boxDrawer.py" />
         <option value="$PROJECT_DIR$/surf.py" />
+        <option value="$PROJECT_DIR$/template.py" />
+        <option value="$PROJECT_DIR$/findSimilaritiesInImages.py" />
+        <option value="$PROJECT_DIR$/writeDefaultJson.py" />
       </list>
     </option>
   </component>
@@ -79,19 +129,29 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1439" />
-    <option name="height" value="834" />
+    <option name="height" value="828" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Image_Processing_Bioinformatics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Image_Processing_Bioinformatics" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Course" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -114,7 +174,7 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="23" width="1439" height="828" extended-state="6" />
+    <frame x="1" y="23" width="1439" height="828" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18124118" />
@@ -137,30 +197,44 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/surf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1335">
+          <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/template.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-616">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/boxDrawer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="83" column="36" lean-forward="true" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+        <state relative-caret-position="684">
+          <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/surf.py">
+    <entry file="file://$PROJECT_DIR$/writeDefaultJson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="240">
+          <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
         </state>
       </provider>
     </entry>
