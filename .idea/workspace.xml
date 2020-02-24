@@ -2,35 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04e28a65-4e9e-432d-a837-b69a0225563e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Image_Processing_Bioinformatics.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Image_Processing_Bioinformatics.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/comparison.json" beforeDir="false" afterPath="$PROJECT_DIR$/comparison.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_orb.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_sift.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_surf.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_template.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_orb.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_sift.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_surf.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_template.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_orb.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_sift.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_surf.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_template.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_orb.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_sift.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_surf.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_template.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_orb.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_sift.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_surf.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_template.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_orb.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_sift.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_surf.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_template.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/findSimilaritiesInImages.py" beforeDir="false" afterPath="$PROJECT_DIR$/findSimilaritiesInImages.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/writeDefaultJson.py" beforeDir="false" afterPath="$PROJECT_DIR$/writeDefaultJson.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,11 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1335">
-              <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="45">
+              <caret line="3" column="40" lean-forward="true" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -68,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/writeDefaultJson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+            <state relative-caret-position="125">
+              <caret line="102" column="47" selection-start-line="102" selection-start-column="47" selection-end-line="102" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -207,16 +183,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-616">
@@ -231,10 +197,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="40" lean-forward="true" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/writeDefaultJson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+        <state relative-caret-position="125">
+          <caret line="102" column="47" selection-start-line="102" selection-start-column="47" selection-end-line="102" selection-end-column="47" />
         </state>
       </provider>
     </entry>
