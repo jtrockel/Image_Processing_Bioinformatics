@@ -2,21 +2,19 @@ import cv2 as cv
 
 class BoxDrawer:
 
-    def __init__(self,winSize,img,color, lineWidth):
+    def __init__(self,winSize,img,color, lineWidth, minNumToAccept=0):
         """
         Initializer function for box drawing class
-        :param kp: array of key points from one of the images that have already been matched
         :param winSize: distance between points to call a new cluster of points a new cluster
         :param img: image being drawn on
         :param color: color of line in rgb for example (0,0,0)
         :param lineWidth: width of line to be drawn
         """
-        #self.kp = kp
         self.winSize = winSize
         self.img = img
         self.color = color
         self.lineWidth = lineWidth
-    #self.drawBoxes()
+        self.minNumToAccept = minNumToAccept
 
     def get_x_y_and_index(self, old_arr):
         """
@@ -35,6 +33,7 @@ class BoxDrawer:
         Function to find clusters
         :return: return array of clusters
         """
+        if len(arr) ==0: return []
         points = self.partitionInADirection(arr,0,[])
         finalPoints = []
         for j in range(len(points)):
@@ -75,11 +74,10 @@ class BoxDrawer:
             xSorted = sorted(points, key=lambda x: x[0])
             ySorted = sorted(points, key=lambda x: x[1])
             add = 5
-            if len(xSorted)==0:continue
+            if len(xSorted)<=self.minNumToAccept:continue
             # if len(xSorted) == 1:
             #     if len(xSorted[0])==0: continue
             #     add = 5
-
             x0 = xSorted[0][0] - add
             x1 = xSorted[-1][0] + add
             y0 = ySorted[0][1] - add
