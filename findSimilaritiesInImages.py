@@ -86,7 +86,7 @@ class FindSimilarities:
 
     def findKeyPoints(self):
         """
-
+        Function to find key points based on algorithm specified
         :return:
         """
         if self.algorithm == "surf":
@@ -100,7 +100,8 @@ class FindSimilarities:
 
     def findMatches(self):
         """
-
+        Function to find matches in key points using flann. Based on params passed in
+            either defaults will be used or params saved in self.params
         :return:
         """
         if self.algorithm=="template":return
@@ -144,10 +145,10 @@ class FindSimilarities:
 
     def addToDict(self,d1,d2):
         """
-
-        :param d1:
-        :param d2:
-        :return:
+        Function to add matches from temp dict to permanent dict
+        :param d1: temp dict
+        :param d2: permanent dict
+        :return: updated permanent dict
         """
         for k,v in d1.items():
             if k not in d2:
@@ -159,11 +160,11 @@ class FindSimilarities:
 
     def makeArrayOfMatches(self,matches,kp1,kp2):
         """
-
-        :param matches:
-        :param kp1:
-        :param kp2:
-        :return:
+        Make arrays of all matched indeces in both images
+        :param matches: list of matches
+        :param kp1: key points in first image
+        :param kp2: key points in second image
+        :return: index of matches in training image and test image, dict of all matched key points
         """
         if self.algorithm=="template":return
         q_good_matches = []
@@ -197,7 +198,7 @@ class FindSimilarities:
 
     def drawMatches(self):
         """
-
+        Function to draw matches onto images
         :return:
         """
         if self.algorithm=="template":return
@@ -232,19 +233,19 @@ class FindSimilarities:
 
 def writeDefaultJson(jsonPath):
     """
-
-    :param jsonPath:
+    Function to write default json file
+    :param jsonPath: path to json file
     :return:
     """
     WriteDefaultJson(jsonPath)
 
 def main(jsonPath):
     """
-
-    :param jsonPath:
+    Main function, calls class itteratively for all comparisons in json file
+    :param jsonPath: path to json file
     :return:
     """
-    writeDefaultJson(jsonPath)
+    # writeDefaultJson(jsonPath)
     with open(jsonPath, 'r') as fp:
         data = json.load(fp)
     for key, dct in data.items():
