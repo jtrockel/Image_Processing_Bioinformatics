@@ -1,5 +1,8 @@
 
-#input is a list of coordinate lists, each sublist representing a bounding box.
+
+#this script compares how closely algorithms generated bounding boxes (boxes_gen) compared to the true positive. (boxes_sol)
+
+#input is 2 lists of coordinate lists, each sublist representing a bounding box.
 def scorer(boxes_gen, boxes_sol):
     false_positive = 0
     true_positive = 0
@@ -34,6 +37,7 @@ def getBoxTuples(box):
     return tuples
 
 #example
-boxes1 = [[(1,1),(5,5)]]
+#(1177,179),(1355,46)
+boxes1 = [[(1,2),(5,5)],[(10,10),(12,12)]]
 boxes2 = [[(1,2),(5,6)]]
 print(scorer(boxes1,boxes2))
