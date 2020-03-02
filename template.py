@@ -5,10 +5,11 @@ from boxDrawer import BoxDrawer
 from tqdm import tqdm
 import sys
 import random
+import json
 
 class TemplateMatch:
 
-    def __init__(self,img1Path, img2Path,stepSize,winSize,threshold,pathOut,pathOut2,maxItter = 6, lineWidth = 3, color=[],backgroundColor=[]):
+    def __init__(self,img1Path, img2Path,stepSize,winSize,threshold,pathOut,pathOut2,outputJsonFile,maxItter = 6, lineWidth = 3, color=[],backgroundColor=[]):
         """
 
         :param img1Path:
@@ -22,6 +23,8 @@ class TemplateMatch:
         :param lineWidth:
         """
         self.threshold = threshold
+        self.boxes1 = []
+        self.boxes2 = []
         self.pathOut = pathOut
         self.pathOut2 = pathOut2
         self.img1 = cv.imread(img1Path)
@@ -37,6 +40,7 @@ class TemplateMatch:
         self.lineWidth = lineWidth
         self.color = color
         self.backgroundColor = backgroundColor
+        self.outputJsonFile = outputJsonFile
         if img1Path == img2Path:
             self.compareToSelf = True
         else:
@@ -77,23 +81,26 @@ class TemplateMatch:
         for el in tqdm(self.arr):
             template = el[2]
             w,h = template.shape[::-1]
+            if self.backgroundColor!=[]: blank_image = self.backgroundColor[0] *np.ones([h*2,w*2], np.uint8)
             cv.rectangle(imgToMatchWith, (el[0], el[1]), (el[0] + w, el[1] + h), (0,0,255), -1)
             if w < .7*self.winSize[0] or h < .7*self.winSize[0]:continue
             imgToMatchWithSquares = imgToMatchWith
             maxVal = 1
             i = 0
             while maxVal> self.threshold:
+                if self.backgroundColor!=[]:
+                    if sum([1 for x in template.flatten() if x == 255])/ len(template.flatten()) > 0.4:
+                        break
                 i += 1
                 res = cv.matchTemplate(imgToMatchWith,template,cv.TM_CCOEFF_NORMED)
                 min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
-                if self.backgroundColor!=[]:
-                    blank_image = self.backgroundColor[0] *np.ones([h,w], np.uint8)
-                    res2 = cv.matchTemplate(blank_image,template, cv.TM_CCOEFF_NORMED)
-                    min_val2, max_val2, min_loc2, max_loc2 = cv.minMaxLoc(res2)
-                    if max_val2>=self.threshold:
-                        break
+
 
                 if max_val<=self.threshold:break
+                if self.backgroundColor!=[]:
+                    crop_img = imgToMatchWith[max_loc[1]:max_loc[0]+h, max_loc[0]:max_loc[0]+w]
+                    if sum([1 for x in crop_img.flatten() if x == 255])/ len(crop_img.flatten()) > 0.4:
+                        break
                 cv.rectangle(imgToMatchWithSquares, (max_loc[0], max_loc[1]), (max_loc[0] + w, max_loc[1] + h), (0,0,255), -1)
                 if self.color == []:
                     color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
@@ -128,6 +135,8 @@ class TemplateMatch:
                     color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
                 else:
                     color = self.color
+                self.boxes1.append([[el[0],el[1]],[el[0]+w,el[1]+h]])
+                self.boxes2.append([[max_loc[0],max_loc[1]],[max_loc[0]+w,max_loc[1]+h]])
                 cv.rectangle(self.img1, (el[0]-self.lineWidth, el[1]-self.lineWidth), (el[0] + w+self.lineWidth, el[1] + h+self.lineWidth), color, self.lineWidth)
                 cv.rectangle(self.img2, (max_loc[0]-self.lineWidth, max_loc[1]-self.lineWidth), (max_loc[0] + w+self.lineWidth, max_loc[1] + h+self.lineWidth), color, self.lineWidth)
                 if i >self.maxItter: break
@@ -141,11 +150,16 @@ class TemplateMatch:
         print("drawing boxes")
         if self.compareToSelf:
             self.findMatchesWithSelf()
-            cv.imwrite(self.pathOut, self.img2)
+            cv.imwrite(self.pathOut, self.img1)
+            cv.imwrite(self.pathOut2, self.img2)
         else:
             self.findMatches()
             cv.imwrite(self.pathOut, self.img1)
             cv.imwrite(self.pathOut2, self.img2)
+
+        d = {"img1": self.boxes1, "img2":self.boxes2}
+        with open(self.outputJsonFile, 'w') as fp:
+            json.dump(d, fp)
 
 
 
@@ -164,13 +178,15 @@ if __name__ == "__main__":
     # # write out images
     # cv.imwrite('joshImages/cells_19_3_4_combined.jpg', combinedimg)
 
-    img1Path = "joshImages/cells_19_all.png"
-    img2Path = "joshImages/cells_19_all.png"
+    # img1Path = "joshImages/cells_19_all.png"
+    # img2Path = "joshImages/cells_19_all.png"
+    img1Path = "/Users/joshuatrockel/Desktop/Files/classes/image-project/Image_Processing_Bioinformatics/images/test_images/cells2.png"
+    img2Path = img1Path
     stepSize = 4
     winSize = (50,50)
-    threshold = 0.9
-    pathOut = 'joshImages/cells_19_3_template.jpg'
-    pathOut2 = 'joshImages/cells_19_4_template.jpg'
-    tm = TemplateMatch(img1Path,img2Path,stepSize,winSize,threshold,pathOut,pathOut2,backgroundColor=[255,255,255])
+    threshold = 0.6
+    pathOut = 'joshImages/cells_2_template.jpg'
+    pathOut2 = 'joshImages/cells_2_template.jpg'
+    tm = TemplateMatch(img1Path,img2Path,stepSize,winSize,threshold,pathOut,pathOut2)
     tm.findAndDrawMatches()
 

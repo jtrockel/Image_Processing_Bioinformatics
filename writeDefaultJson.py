@@ -30,6 +30,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_2_1_surf.jpg",
                         "outputPath2":"figure_1_output/cells_2_2_surf.jpg",
+                        "outputFile": "figure_1_output/cells_2_1&2_surf.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -47,6 +48,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_2_1_sift.jpg",
                         "outputPath2":"figure_1_output/cells_2_2_sift.jpg",
+                        "outputFile": "figure_1_output/cells_2_1&2_sift.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -65,6 +67,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_2_1_orb.jpg",
                         "outputPath2":"figure_1_output/cells_2_2_orb.jpg",
+                        "outputFile": "figure_1_output/cells_2_1&2_orb.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -83,6 +86,7 @@ class WriteDefaultJson:
                         "cluster_gap":5,
                         "outputPath1":"figure_1_output/cells_2_1_template.jpg",
                         "outputPath2":"figure_1_output/cells_2_2_template.jpg",
+                        "outputFile": "figure_1_output/cells_2_1&2_template.json",
                         "b_w": False,
                         "color":[]
                     }
@@ -101,6 +105,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_19_1_surf.jpg",
                         "outputPath2":"figure_1_output/cells_19_2_surf.jpg",
+                        "outputFile": "figure_1_output/cells_19_1&2_surf.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -118,6 +123,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_19_1_sift.jpg",
                         "outputPath2":"figure_1_output/cells_19_2_sift.jpg",
+                        "outputFile": "figure_1_output/cells_19_1&2_sift.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -136,6 +142,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_19_1_orb.jpg",
                         "outputPath2":"figure_1_output/cells_19_2_orb.jpg",
+                        "outputFile": "figure_1_output/cells_19_1&2_orb.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -154,6 +161,7 @@ class WriteDefaultJson:
                         "cluster_gap":5,
                         "outputPath1":"figure_1_output/cells_19_1_template.jpg",
                         "outputPath2":"figure_1_output/cells_19_2_template.jpg",
+                        "outputFile": "figure_1_output/cells_19_1&2_template.json",
                         "b_w": False,
                         "color":[]
                     }
@@ -172,6 +180,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_19_3_surf.jpg",
                         "outputPath2":"figure_1_output/cells_19_4_surf.jpg",
+                        "outputFile": "figure_1_output/cells_19_3&4_surf.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -189,6 +198,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_19_3_sift.jpg",
                         "outputPath2":"figure_1_output/cells_19_4_sift.jpg",
+                        "outputFile": "figure_1_output/cells_19_3&4_sift.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -207,6 +217,7 @@ class WriteDefaultJson:
                         "num_matches":7,
                         "outputPath1":"figure_1_output/cells_19_3_orb.jpg",
                         "outputPath2":"figure_1_output/cells_19_4_orb.jpg",
+                        "outputFile": "figure_1_output/cells_19_3&4_orb.json",
                         "b_w": False,
                         "color":[],
                         "flann":{
@@ -225,6 +236,7 @@ class WriteDefaultJson:
                         "cluster_gap":5,
                         "outputPath1":"figure_1_output/cells_19_3_template.jpg",
                         "outputPath2":"figure_1_output/cells_19_4_template.jpg",
+                        "outputFile": "figure_1_output/cells_19_3&4_template.json",
                         "b_w": False,
                         "color":[]
                     }
