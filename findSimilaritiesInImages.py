@@ -212,7 +212,14 @@ class FindSimilarities:
                     q_temp_matches.append(match[i].queryIdx)
                     t_temp_matches.append(match[i].trainIdx)
         return q_good_matches, t_good_matches, dictOfMatches
-
+    
+    def getClusters(self):
+        if self.algorithm=="template":return 0
+        bd = BoxDrawer(self.params["cluster_gap"],self.img1,(0,0,0),self.params["line_width"],self.params["min_num_in_cluster_to_accept"])
+        clusters1 = bd.get_x_y_and_index(self.kp1_matched)
+        clusters1 = bd.findBoxes(clusters1)
+        return len(clusters1)
+    
     def drawMatches(self):
         """
         Function to draw matches onto images
@@ -281,7 +288,18 @@ def main(jsonPath):
             cp.readInImages()
             cp.findKeyPoints()
             cp.findMatches()
-            cp.drawMatches()
+            len1 = cp.getClusters()
+            
+            cp2 = FindSimilarities(algorithm,params,inputPath2,inputPath1)
+            cp2.readInImages()
+            cp2.findKeyPoints()
+            cp2.findMatches()
+            len2 = cp2.getClusters()
+
+            if len1 < len2:
+                cp.drawMatches()
+            else:
+                cp2.drawMatches()
 
 if __name__ == "__main__":
     jsonPath = "comparison.json"
