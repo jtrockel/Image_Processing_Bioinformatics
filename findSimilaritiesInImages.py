@@ -27,6 +27,8 @@ class FindSimilarities:
         self.inputPath1 = inputPath1
         self.inputPath2 = inputpath2
         self.color = self.params["color"]
+        self.boxes1 = []
+        self.boxes2 = []
 
     def readInImages(self):
         """
@@ -81,7 +83,7 @@ class FindSimilarities:
         threshold = self.params["cor_thresh"]
         pathOut = self.params["outputPath1"]
         pathOut2 = self.params["outputPath2"]
-        tm = TemplateMatch(self.inputPath1,self.inputPath2,stepSize,winSize,threshold,pathOut,pathOut2, color = self.color, lineWidth=self.params["line_width"])
+        tm = TemplateMatch(self.inputPath1,self.inputPath2,stepSize,winSize,threshold,pathOut,pathOut2,outputJsonFile=self.params["outputFile"], color = self.color, lineWidth=self.params["line_width"])
         tm.findAndDrawMatches()
 
     def findKeyPoints(self):
@@ -158,6 +160,21 @@ class FindSimilarities:
         return d2
 
 
+    def find_x_y_min_max(self,clust):
+        sx = sorted(clust, key=lambda x: x[0])
+        sy = sorted(clust, key=lambda x: x[1])
+
+        minX = int(sx[0][0])
+        maxX = int(sx[-1][0])
+        minY = int(sy[0][1])
+        maxY = int(sy[-1][1])
+        return [[minX,minY], [maxX,maxY]]
+
+    def addBounds(self, clust1,clust2):
+        self.boxes1.append(self.find_x_y_min_max(clust1))
+        for clust in clust2:
+            self.boxes2.append(self.find_x_y_min_max(clust))
+
     def makeArrayOfMatches(self,matches,kp1,kp2):
         """
         Make arrays of all matched indeces in both images
@@ -195,7 +212,14 @@ class FindSimilarities:
                     q_temp_matches.append(match[i].queryIdx)
                     t_temp_matches.append(match[i].trainIdx)
         return q_good_matches, t_good_matches, dictOfMatches
-
+    
+    def getClusters(self):
+        if self.algorithm=="template":return 0
+        bd = BoxDrawer(self.params["cluster_gap"],self.img1,(0,0,0),self.params["line_width"],self.params["min_num_in_cluster_to_accept"])
+        clusters1 = bd.get_x_y_and_index(self.kp1_matched)
+        clusters1 = bd.findBoxes(clusters1)
+        return len(clusters1)
+    
     def drawMatches(self):
         """
         Function to draw matches onto images
@@ -216,6 +240,7 @@ class FindSimilarities:
 
             clust2 = bd2.get_x_y_and_index(clustFrom2)
             clust2 = bd.findBoxes(clust2)
+            self.addBounds(clust,clust2)
             if self.color == []: color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
             else: color = self.color
             bd.color = color
@@ -229,6 +254,9 @@ class FindSimilarities:
         # write out images
         cv.imwrite(self.params["outputPath1"],img1)
         cv.imwrite(self.params["outputPath2"], img2)
+        d = {"img1": self.boxes1, "img2":self.boxes2}
+        with open(self.params["outputFile"], 'w') as fp:
+            json.dump(d, fp)
 
 
 def writeDefaultJson(jsonPath):
@@ -260,7 +288,18 @@ def main(jsonPath):
             cp.readInImages()
             cp.findKeyPoints()
             cp.findMatches()
-            cp.drawMatches()
+            len1 = cp.getClusters()
+            
+            cp2 = FindSimilarities(algorithm,params,inputPath2,inputPath1)
+            cp2.readInImages()
+            cp2.findKeyPoints()
+            cp2.findMatches()
+            len2 = cp2.getClusters()
+
+            if len1 < len2:
+                cp.drawMatches()
+            else:
+                cp2.drawMatches()
 
 if __name__ == "__main__":
     jsonPath = "comparison.json"
