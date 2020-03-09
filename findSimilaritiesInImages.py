@@ -168,6 +168,7 @@ class FindSimilarities:
         # maxX = int(sx[-1][0])
         # minY = int(sy[0][1])
         # maxY = int(sy[-1][1])
+        if len(clust)<= self.params["min_num_in_cluster_to_accept"]: return []
         mins = np.min(clust,axis=0)
         minX, minY = int(mins[0]), int(mins[1])
         maxs = np.max(clust, axis=0)
@@ -176,9 +177,13 @@ class FindSimilarities:
         return [[minX,minY], [maxX,maxY]]
 
     def addBounds(self, clust1,clust2):
-        self.boxes1.append(self.find_x_y_min_max(clust1))
+        bounds = self.find_x_y_min_max(clust1)
+        if len(bounds) >0:
+            self.boxes1.append(bounds)
         for clust in clust2:
-            self.boxes2.append(self.find_x_y_min_max(clust))
+            bounds2 = self.find_x_y_min_max(clust)
+            if len(bounds2)>0:
+                self.boxes2.append(bounds2)
 
     def makeArrayOfMatches(self,matches,kp1,kp2):
         """
