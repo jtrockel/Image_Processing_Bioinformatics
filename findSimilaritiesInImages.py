@@ -267,6 +267,7 @@ def main(jsonPath):
     :return:
     """
     writeDefaultJson(jsonPath)
+
     with open(jsonPath, 'r') as fp:
         data = json.load(fp)
     for key, dct in data.items():

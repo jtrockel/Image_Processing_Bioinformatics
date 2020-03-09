@@ -6,10 +6,11 @@ from tqdm import tqdm
 import sys
 import random
 import json
+import multiprocess
 
 class TemplateMatch:
 
-    def __init__(self,img1Path, img2Path,stepSize,winSize,threshold,pathOut,pathOut2,outputJsonFile,maxItter = 6, lineWidth = 3, color=[],backgroundColor=[]):
+    def __init__(self,img1Path, img2Path,stepSize,winSize,threshold,pathOut,pathOut2,outputJsonFile,maxItter = 6, lineWidth = 3, color=[],backgroundColor=[],parallel=False):
         """
 
         :param img1Path:
@@ -41,6 +42,7 @@ class TemplateMatch:
         self.color = color
         self.backgroundColor = backgroundColor
         self.outputJsonFile = outputJsonFile
+        self.parallel = parallel
         if img1Path == img2Path:
             self.compareToSelf = True
         else:
@@ -111,6 +113,48 @@ class TemplateMatch:
                 if i >self.maxItter: break
 
 
+    def findMatchesSingle(self, i):
+        imgToMatchWith = self.img2Gray
+        template = self.arr[i][2]
+        w,h = template.shape[::-1]
+        if w < .7*self.winSize[0] or h < .7*self.winSize[0]:return [[],[]]
+        imgToMatchWithSquares = imgToMatchWith
+        maxVal = 1
+        j = 0
+        boxes1 = []
+        boxes2 = []
+        while maxVal> self.threshold:
+            j += 1
+            res = cv.matchTemplate(imgToMatchWith,template,cv.TM_CCOEFF_NORMED)
+            min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+            if max_val<=self.threshold:break
+            cv.rectangle(imgToMatchWithSquares, (max_loc[0], max_loc[1]), (max_loc[0] + w, max_loc[1] + h), (0,0,255), -1)
+            boxes1.append([[self.arr[i][0],self.arr[i][1]],[self.arr[i][0]+w,self.arr[i][1]+h]])
+            boxes2.append([[max_loc[0],max_loc[1]],[max_loc[0]+w,max_loc[1]+h]])
+            if j >self.maxItter: break
+        return [boxes1, boxes2]
+
+
+    def findMatchesParallel(self):
+        p = multiprocess.Pool(multiprocess.cpu_count() -1)
+        boxes = p.map(self.findMatchesSingle, range(len(self.arr)))
+        p.close()
+        p.join()
+        for pair in boxes:
+            if pair[0]==[] or pair[1] ==[]: continue
+            one = pair[0][0]
+            two = pair[1][0]
+            self.boxes1.append(one)
+            self.boxes2.append(two)
+            if self.color == []:
+                color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
+            else:
+                color = self.color
+            cv.rectangle(self.img1, (one[0][0]-self.lineWidth, one[0][1]-self.lineWidth), (one[1][0] +self.lineWidth, one[1][1] +self.lineWidth), color, self.lineWidth)
+            cv.rectangle(self.img2, (two[0][0]-self.lineWidth, two[0][1]-self.lineWidth), (two[1][0] +self.lineWidth, two[1][1] +self.lineWidth), color, self.lineWidth)
+
+
+
     def findMatches(self):
         """
 
@@ -153,7 +197,8 @@ class TemplateMatch:
             cv.imwrite(self.pathOut, self.img1)
             cv.imwrite(self.pathOut2, self.img2)
         else:
-            self.findMatches()
+            if self.parallel: self.findMatchesParallel()
+            else: self.findMatches()
             cv.imwrite(self.pathOut, self.img1)
             cv.imwrite(self.pathOut2, self.img2)
 
@@ -171,22 +216,14 @@ def hconcat_resize_min(im_list, interpolation=cv.INTER_CUBIC):
 
 
 if __name__ == "__main__":
-    # img1 = cv.imread("figure_1_input/cells_19_3.png")
-    # img2 = cv.imread("figure_1_input/cells_19_4.png")
-    # combinedimg = hconcat_resize_min([img1,img2]) #make sure that images have the same dimensions
-    #
-    # # write out images
-    # cv.imwrite('joshImages/cells_19_3_4_combined.jpg', combinedimg)
 
-    # img1Path = "joshImages/cells_19_all.png"
-    # img2Path = "joshImages/cells_19_all.png"
-    img1Path = "/Users/joshuatrockel/Desktop/Files/classes/image-project/Image_Processing_Bioinformatics/images/test_images/cells2.png"
-    img2Path = img1Path
-    stepSize = 4
-    winSize = (50,50)
-    threshold = 0.6
-    pathOut = 'joshImages/cells_2_template.jpg'
-    pathOut2 = 'joshImages/cells_2_template.jpg'
-    tm = TemplateMatch(img1Path,img2Path,stepSize,winSize,threshold,pathOut,pathOut2)
+    img1Path = "figure_1_input/cells_2_1.png"
+    img2Path = "figure_1_input/cells_2_2.png"
+    stepSize = 20
+    winSize = (100,100)
+    threshold = 0.7
+    pathOut = 'joshImages/cells_2_1_template.jpg'
+    pathOut2 = 'joshImages/cells_2_2_template.jpg'
+    tm = TemplateMatch(img1Path,img2Path,stepSize,winSize,threshold,pathOut,pathOut2, outputJsonFile='joshImages/cells_2_template.json' )
     tm.findAndDrawMatches()
 
