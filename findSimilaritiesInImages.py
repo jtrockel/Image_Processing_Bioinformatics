@@ -161,13 +161,18 @@ class FindSimilarities:
 
 
     def find_x_y_min_max(self,clust):
-        sx = sorted(clust, key=lambda x: x[0])
-        sy = sorted(clust, key=lambda x: x[1])
+        # sx = sorted(clust, key=lambda x: x[0])
+        # sy = sorted(clust, key=lambda x: x[1])
+        #
+        # minX = int(sx[0][0])
+        # maxX = int(sx[-1][0])
+        # minY = int(sy[0][1])
+        # maxY = int(sy[-1][1])
+        mins = np.min(clust,axis=0)
+        minX, minY = int(mins[0]), int(mins[1])
+        maxs = np.max(clust, axis=0)
+        maxX, maxY = int(maxs[0]), int(maxs[1])
 
-        minX = int(sx[0][0])
-        maxX = int(sx[-1][0])
-        minY = int(sy[0][1])
-        maxY = int(sy[-1][1])
         return [[minX,minY], [maxX,maxY]]
 
     def addBounds(self, clust1,clust2):
@@ -220,7 +225,7 @@ class FindSimilarities:
         clusters1 = bd.findBoxes(clusters1)
         return len(clusters1)
     
-    def drawMatches(self):
+    def drawMatches(self, rev=False):
         """
         Function to draw matches onto images
         :return:
@@ -239,7 +244,7 @@ class FindSimilarities:
                 clustFrom2 = clustFrom2 + self.dictMatches[self.kp1_matched[val[2]]]
 
             clust2 = bd2.get_x_y_and_index(clustFrom2)
-            clust2 = bd.findBoxes(clust2)
+            clust2 = bd2.findBoxes(clust2)
             self.addBounds(clust,clust2)
             if self.color == []: color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
             else: color = self.color
@@ -254,7 +259,11 @@ class FindSimilarities:
         # write out images
         cv.imwrite(self.params["outputPath1"],img1)
         cv.imwrite(self.params["outputPath2"], img2)
-        d = {"img1": self.boxes1, "img2":self.boxes2}
+        if not rev:
+            d = {"img1": self.boxes1, "img2":self.boxes2}
+        if rev:
+            d = {"img1": self.boxes2, "img2":self.boxes1}
+
         with open(self.params["outputFile"], 'w') as fp:
             json.dump(d, fp)
 
@@ -277,6 +286,10 @@ def main(jsonPath):
 
     with open(jsonPath, 'r') as fp:
         data = json.load(fp)
+
+    from pprint import pprint
+    # pprint(data)
+    # sys.exit()
     for key, dct in data.items():
 
         inputPath1 = dct["inputImg1"]
@@ -290,8 +303,12 @@ def main(jsonPath):
             cp.findKeyPoints()
             cp.findMatches()
             len1 = cp.getClusters()
-            
-            cp2 = FindSimilarities(algorithm,params,inputPath2,inputPath1)
+
+            if k =="template": continue
+
+            inputPath1, inputPath2 = inputPath2, inputPath1
+            params["outputPath1"], params["outputPath2"] = params["outputPath2"], params["outputPath1"]
+            cp2 = FindSimilarities(algorithm,params,inputPath1,inputPath2)
             cp2.readInImages()
             cp2.findKeyPoints()
             cp2.findMatches()
@@ -300,7 +317,7 @@ def main(jsonPath):
             if len1 < len2:
                 cp.drawMatches()
             else:
-                cp2.drawMatches()
+                cp2.drawMatches(rev=True)
 
 if __name__ == "__main__":
     jsonPath = "comparison.json"

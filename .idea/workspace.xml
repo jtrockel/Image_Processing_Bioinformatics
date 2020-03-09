@@ -2,9 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04e28a65-4e9e-432d-a837-b69a0225563e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1&amp;2_orb.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1&amp;2_orb.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1&amp;2_sift.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1&amp;2_sift.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1&amp;2_surf.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1&amp;2_surf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_1_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_1_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_2_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_2_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3&amp;4_sift.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3&amp;4_sift.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3&amp;4_surf.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3&amp;4_surf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_3_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_3_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_19_4_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_19_4_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1&amp;2_orb.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1&amp;2_orb.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1&amp;2_sift.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1&amp;2_sift.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1&amp;2_surf.json" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1&amp;2_surf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_1_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_1_surf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_orb.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_orb.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_sift.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_sift.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figure_1_output/cells_2_2_surf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/figure_1_output/cells_2_2_surf.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/findSimilaritiesInImages.py" beforeDir="false" afterPath="$PROJECT_DIR$/findSimilaritiesInImages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template.py" beforeDir="false" afterPath="$PROJECT_DIR$/template.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/surf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="91" column="98" selection-start-line="91" selection-start-column="98" selection-end-line="91" selection-end-column="114" />
+            <state relative-caret-position="161">
+              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="43" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -26,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+            <state relative-caret-position="478">
+              <caret line="318" column="17" lean-forward="true" selection-start-line="318" selection-start-column="17" selection-end-line="318" selection-end-column="17" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -41,26 +65,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/writeDefaultJson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="80" column="39" lean-forward="true" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
+            <state relative-caret-position="322">
+              <caret line="32" column="73" lean-forward="true" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boxDrawer.py">
+        <entry file="file://$PROJECT_DIR$/boxDrawer_version2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+            <state relative-caret-position="648">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-275">
-              <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -81,6 +105,10 @@
       <find>template</find>
       <find>sys</find>
       <find>print</find>
+      <find>self.boxes</find>
+      <find>ddbounds</find>
+      <find>addbounds</find>
+      <find>findboxes</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,10 +118,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/boxDrawer.py" />
-        <option value="$PROJECT_DIR$/surf.py" />
-        <option value="$PROJECT_DIR$/writeDefaultJson.py" />
-        <option value="$PROJECT_DIR$/findSimilaritiesInImages.py" />
         <option value="$PROJECT_DIR$/template.py" />
+        <option value="$PROJECT_DIR$/writeDefaultJson.py" />
+        <option value="$PROJECT_DIR$/surf.py" />
+        <option value="$PROJECT_DIR$/findSimilaritiesInImages.py" />
       </list>
     </option>
   </component>
@@ -182,44 +210,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/surf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="91" column="98" selection-start-line="91" selection-start-column="98" selection-end-line="91" selection-end-column="114" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/boxDrawer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
+        <state relative-caret-position="684">
           <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/writeDefaultJson.py">
+    <entry file="file://$PROJECT_DIR$/surf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="80" column="39" lean-forward="true" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        <state relative-caret-position="161">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="43" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boxDrawer_version2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/writeDefaultJson.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="32" column="73" lean-forward="true" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/findSimilaritiesInImages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="318" column="17" lean-forward="true" selection-start-line="318" selection-start-column="17" selection-end-line="318" selection-end-column="17" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
