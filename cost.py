@@ -39,32 +39,38 @@ class Cost:
 				xy = self.getOverlapPositions(box_a, box_t)
 #				print("xy:")
 #				print(xy)
-				x_y_sum = xy[0] + xy[1] + xy[2] + xy[3]
-				if x_y_sum == 0:
-					xy2 = self.getOverlapPositions(box_t, box_a)
-					x_y_sum2 = xy2[0] + xy2[1] + xy2[2] + xy2[3]
+				if xy == -1: # The boxes do not overlap, so move on
+					continue
+				if xy[4] == 0:  #t is inside a, so keep only a
+					#xy2 = self.getOverlapPositions(box_t, box_a)
 					#need to check one value of t in/out of a
-					# if t is in: keep only a
+					# if t is inside a, keep only a
 					# if out, keep both
-					if x_y_sum2 > 0 or box_a == box_t:
-						temp.remove(box_t)
-						overlap.append(box_t)
-				elif x_y_sum == 1:
+					#if xy2[4] > 0 or box_a == box_t:
+					#	temp.remove(box_t)
+					#	overlap.append(box_t)
+					temp.remove(box_t)
+					overlap.append(box_t)
+				elif xy[4] == 1:
 					overlap.append(self.shiftBox(a[i], temp[j], xy, 1))
 					append_a = True
 					#keep a, keep t but shift on the value that == 1
-				elif x_y_sum == 3:
+				elif xy[4] == 3:
 					#keep t, keep a but shift on the value that == 0
 					overlap.append(self.shiftBox(temp[j], a[i], xy, 0))
 					append_a = True
-				elif x_y_sum == 2:
+				elif xy[4] == 2:
 					#keep t, keep a but in two pieces, shift on the values that == 1
+					#xy2 = self.getOverlapPositions(box_t, box_a)
+					#if xy2[4] == 1:
+					#	self.shiftBox(temp[j], a[i], xy2, 1)
+					#	continue
 					m,n,l = self.makeTwoBoxes(temp[j], a[i], xy, 1)
 					a.append(m)
 					a.append(n)
 					overlap.append(l)
 					break
-				else: #x_y_sum == 4:  Only keep t	
+				else: #xy[4] == 4:  Only keep t
 					overlap.append(box_a)
 					break
 			if append_a:
@@ -74,18 +80,56 @@ class Cost:
 
 
 
-
+	# Takes two boxes of the form [[x1,y1],[x2,y2]]
+	# returns -1 if they do not overlap
+	# else returns 1 if any of the lines x1, x2, y1, y2 in a pass through the box t, and the sum of x1 + x2 + y1 + y2
 	def getOverlapPositions(self, a, t):
 		x1 = x2 = y1 = y2 = 0
+		in_out = [1,1,1,1]
+
 		if a[0][0] > t[0][0] and a[0][0] < t[1][0]:
-			x1 = 1	
+			x1 = 1
+		elif a[0][0] >= t[1][0]:
+			in_out[0] = 'g'
+		else:  #a[0][0] <= t[0][0]
+			in_out[0] = 'l'
+
 		if a[1][0] > t[0][0] and a[1][0] < t[1][0]:
-			x2 = 1	
+			x2 = 1
+		elif a[1][0] >= t[1][0]:
+			in_out[1] = 'g'
+		else: #a[1][0] <= t[0][0]
+			in_out[1] = 'l'
+
 		if a[1][1] > t[1][1] and a[1][1] < t[0][1]:
 			y1 = 1
+		elif a[1][1] >= t[0][1]:
+			in_out[2] = 'g'
+		else: #a[1][1] <= t[1][1]
+			in_out[2] = 'l'
+
 		if a[0][1] > t[1][1] and a[0][1] < t[0][1]:
 			y2 = 1
-		return [x1, x2, y1, y2]
+		elif a[0][1] >= t[0][1]:
+			in_out[3] = 'g'
+		else: #a[0][1] <= t[1][1]
+			in_out[3] = 'l'
+
+		sum = x1 + x2 + y1 + y2
+
+		if sum == 0 and in_out[0] == in_out[1] and in_out[2] == in_out[3]:
+			return -1
+
+		if sum == 1:
+			if x1 == 1 or x2 == 1:
+				if in_out[2] == in_out[3]:
+					return -1
+
+			elif y1 == 1 or y2 == 1:
+				if in_out[0] == in_out[1]:
+					return -1
+
+		return [x1, x2, y1, y2, sum]
 
 	# makes the "new" box into the portion that does not overlap with reference, and returns the overlap box.
 	def shiftBox(self, reference, new, xy, toShift):
@@ -123,7 +167,7 @@ class Cost:
 
 
 cost = Cost()
-answer = [ [[1,5],[5,1]]  ]
-guess = [   [[2,5],[5,2]] ]
+answer = [ [[2,5],[5,2]], [[2,7],[6,4]]  ]
+guess = [   [[2,5],[5,1]], [[2,7],[6,4]] ]
 print(cost.getCost(10,10, answer, guess))
 
