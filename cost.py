@@ -2,13 +2,13 @@
 
 class Cost:
 	def getCost(self, x, y, answer, guess):
-		self.removeOverlap(answer[1:], [answer[0]])
+		self.removeOverlap(answer[1:], [answer[0]], True)
 #		print(answer)
 		answer_area = self.getTotalArea(answer)
-		self.removeOverlap(guess[1:], [guess[0]])
+		self.removeOverlap(guess[1:], [guess[0]], True)
 #		print(guess)
 		guess_area = self.getTotalArea(guess)
-		overlap_boxes = self.removeOverlap(answer, guess)
+		overlap_boxes = self.removeOverlap(answer, guess, False)
 #		print(overlap_boxes)
 		overlap_area = self.getTotalArea(overlap_boxes)
 
@@ -31,17 +31,21 @@ class Cost:
 		dy = box[0][1] - box[1][1]
 		return dx*dy
 
-	def removeOverlap(self, a, temp):	
+	def removeOverlap(self, a, temp, reduce_a):
 		overlap = []
 		for i, box_a in enumerate(a):
-			append_a = False
-			for j, box_t in enumerate(temp[::-1]):
+			#append_a = True
+			j = 0
+			while j < len(temp):
+				#print(i,j)
+				box_t = temp[j]
 				xy = self.getOverlapPositions(box_a, box_t)
 #				print("xy:")
 #				print(xy)
 				if xy == -1: # The boxes do not overlap, so move on
+					j += 1
 					continue
-				if xy[4] == 0:  #t is inside a, so keep only a
+				elif xy[4] == 0:  #t is inside a, so keep only a
 					#xy2 = self.getOverlapPositions(box_t, box_a)
 					#need to check one value of t in/out of a
 					# if t is inside a, keep only a
@@ -51,14 +55,15 @@ class Cost:
 					#	overlap.append(box_t)
 					temp.remove(box_t)
 					overlap.append(box_t)
+					continue
 				elif xy[4] == 1:
 					overlap.append(self.shiftBox(a[i], temp[j], xy, 1))
-					append_a = True
+					#append_a = True
 					#keep a, keep t but shift on the value that == 1
 				elif xy[4] == 3:
 					#keep t, keep a but shift on the value that == 0
 					overlap.append(self.shiftBox(temp[j], a[i], xy, 0))
-					append_a = True
+					#append_a = True
 				elif xy[4] == 2:
 					#keep t, keep a but in two pieces, shift on the values that == 1
 					#xy2 = self.getOverlapPositions(box_t, box_a)
@@ -73,7 +78,10 @@ class Cost:
 				else: #xy[4] == 4:  Only keep t
 					overlap.append(box_a)
 					break
-			if append_a:
+
+				j += 1
+			#if append_a:
+			if reduce_a:
 				temp.append(box_a)
 		a = temp	
 		return overlap
@@ -135,16 +143,16 @@ class Cost:
 	def shiftBox(self, reference, new, xy, toShift):
 		overlap = []
 		if xy[0] == toShift:
-			overlap = [[reference[0][0],new[0][1]], new[1]]
+			overlap = [[reference[0][0],new[0][1]], new[1].copy()]
 			new[1][0] = reference[0][0]
 		elif xy[1] == toShift:
-			overlap = [new[0], [reference[1][0], new[1][1]]]
+			overlap = [new[0].copy(), [reference[1][0], new[1][1]]]
 			new[0][0] = reference[1][0]
 		elif xy[2] == toShift:
-			overlap = [new[0],[new[1][0],reference[1][1]]]
+			overlap = [new[0].copy(),[new[1][0],reference[1][1]]]
 			new[0][1] = reference[1][1]
 		elif xy[3] == toShift:
-			overlap = [[new[0][0],reference[0][1]],new[1]]
+			overlap = [[new[0][0],reference[0][1]],new[1].copy()]
 			new[1][1] = reference[0][1]
 		return overlap
 
@@ -158,16 +166,16 @@ class Cost:
 		if xy == [1,0,0,1]:
 			box2 = [[new[0][0],reference[1][1]],[reference[1][0],new[1][1]]]
 		elif xy == [0,1,0,1]:
-			box2 = [new[0],[reference[0][0],reference[1][1]]]
+			box2 = [new[0].copy(),[reference[0][0],reference[1][1]]]
 		elif xy == [0,1,1,0]:
 			box2 = [[new[0][0],reference[0][1]],[reference[0][0],new[1][1]]]
 		elif xy == [1,0,1,0]:
-			box2 = [new[0],[reference[1][0],reference[0][1]]]
+			box2 = [new[0].copy(),[reference[1][0],reference[0][1]]]
 		return[box1,box2,overlap]
 
 
 cost = Cost()
-answer = [ [[2,5],[5,2]], [[2,7],[6,4]]  ]
-guess = [   [[2,5],[5,1]], [[2,7],[6,4]] ]
+answer = [ [[2,5],[5,2]], [[2,7],[6,4]]     ]
+guess = [   [[2,5],[5,1]], [[2,7],[6,4]]    ]
 print(cost.getCost(10,10, answer, guess))
 
