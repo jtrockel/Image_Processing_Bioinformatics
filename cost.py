@@ -42,7 +42,7 @@ class Cost:
 				xy = self.getOverlapPositions(box_a, box_t)
 #				print("xy:")
 #				print(xy)
-				if xy == -1: # The boxes do not overlap, so move on
+				if xy[4] == -1: # The boxes do not overlap, so move on
 					j += 1
 					continue
 				elif xy[4] == 0:  #t is inside a, so keep only a
@@ -70,9 +70,11 @@ class Cost:
 					#if xy2[4] == 1:
 					#	self.shiftBox(temp[j], a[i], xy2, 1)
 					#	continue
-					m,n,l = self.makeTwoBoxes(temp[j], a[i], xy, 1)
-					a.append(m)
-					a.append(n)
+					m,n,l = self.makeTwoBoxes(temp[j], a[i], xy, 0)
+					if self.getBoxArea(m) > 0:
+						a.append(m)
+					if self.getBoxArea(n) > 0:
+						a.append(n)
 					overlap.append(l)
 					break
 				else: #xy[4] == 4:  Only keep t
@@ -125,21 +127,22 @@ class Cost:
 
 		sum = x1 + x2 + y1 + y2
 
-		if sum == 0 and in_out[0] == in_out[1] and in_out[2] == in_out[3]:
-			return -1
+		if sum == 0 and ( in_out[0] == in_out[1] or in_out[2] == in_out[3] ):
+			sum = -1
 
 		if sum == 1:
 			if x1 == 1 or x2 == 1:
 				if in_out[2] == in_out[3]:
-					return -1
+					sum = -1
 
 			elif y1 == 1 or y2 == 1:
 				if in_out[0] == in_out[1]:
-					return -1
+					sum = -1
 
 		return [x1, x2, y1, y2, sum]
 
 	# makes the "new" box into the portion that does not overlap with reference, and returns the overlap box.
+	#
 	def shiftBox(self, reference, new, xy, toShift):
 		overlap = []
 		if xy[0] == toShift:
@@ -159,23 +162,31 @@ class Cost:
 
 
 	def makeTwoBoxes(self, reference, new, xy, toShift):
-		box1 = new.copy()
-		overlap = self.shiftBox(reference, box1, xy, toShift)
 		#print(overlap)
 		box2 = []
-		if xy == [1,0,0,1]:
-			box2 = [[new[0][0],reference[1][1]],[reference[1][0],new[1][1]]]
-		elif xy == [0,1,0,1]:
-			box2 = [new[0].copy(),[reference[0][0],reference[1][1]]]
-		elif xy == [0,1,1,0]:
-			box2 = [[new[0][0],reference[0][1]],[reference[0][0],new[1][1]]]
-		elif xy == [1,0,1,0]:
+		if xy[0:4] == [1,0,0,1]:
+			box2 = [[new[0][0],reference[1][1]], new[1].copy()]
+			new[1][1] = reference[1][1]
+		elif xy[0:4] == [0,1,0,1]:
+			box2 = [[new[0][0],reference[1][1]], new[1].copy()]
+			new[1][1] = reference[1][1]
+		elif xy[0:4] == [0,1,1,0]:
+			box2 = [new[0].copy(),[new[1][0],reference[0][1]]]
+			new[0][1] = reference[0][1]
+		elif xy[0:4] == [1,0,1,0]:
 			box2 = [new[0].copy(),[reference[1][0],reference[0][1]]]
+			new[0][1] = reference[0][1]
+
+		box1 = new.copy()
+		overlap = self.shiftBox(reference, box1, xy, toShift)
+
 		return[box1,box2,overlap]
 
 
 cost = Cost()
-answer = [ [[2,5],[5,2]], [[2,7],[6,4]]     ]
-guess = [   [[2,5],[5,1]], [[2,7],[6,4]]    ]
+answer = [ [[2,5],[5,2]]     ]       #7%
+guess = [   [[1,5],[5,1]]    ]
+
+
 print(cost.getCost(10,10, answer, guess))
 
