@@ -54,10 +54,11 @@ class createImageDataset():
 
         if resizeX > maxWidth:
             return img
-        if resizeY < maxHeight:
+        if resizeY > maxHeight:
             return img
 
-        return img.resize((resizeX, resizeY))
+        resized = img.resize((resizeX, resizeY))
+        return resized
 
     """ URL: https://note.nkmk.me/en/python-pillow-flip-mirror/ """
     def mirrorImage(self, img):
@@ -283,7 +284,7 @@ def main():
     root2 = 'image_datasets\\testing_set_edited'
 
     cid = createImageDataset()
-    for subdir, dirs, files in os.walk(root):
+    for subdir, dirs, files in os.walk(root2):
         if len(dirs) == 0:
             if os.path.exists(subdir + "\\correct.json"):
                 os.remove(subdir + "\\correct.json")
@@ -292,8 +293,7 @@ def main():
             if os.path.exists(subdir + "\\truth.jpg"):
                 os.remove(subdir + "\\truth.jpg")
 
-
-    for subdir, dirs, files in os.walk(root):
+    for subdir, dirs, files in os.walk(root2):
         if len(dirs) == 0:
             cid.createEditedPic(files[0], files[1], subdir)
 
