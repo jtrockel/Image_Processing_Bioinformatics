@@ -1,24 +1,27 @@
 #TODO: consider breaking removeOverlap and others into two functions, one for finding overlap boxes and one for finding non-overlap boxes, for speed.
 
+#TODO:
 class Cost:
 	def getCost(self, x, y, answer, guess):
-		self.removeOverlap(answer[1:], [answer[0]], True)
+		answer, a_overlap = self.removeOverlap(answer, [], True)
 #		print(answer)
 		answer_area = self.getTotalArea(answer)
-		self.removeOverlap(guess[1:], [guess[0]], True)
+		guess, g_overlap = self.removeOverlap(guess, [], True)
 #		print(guess)
 		guess_area = self.getTotalArea(guess)
-		overlap_boxes = self.removeOverlap(answer, guess, False)
+		t, overlap_boxes = self.removeOverlap(answer, guess, False)
 #		print(overlap_boxes)
 		overlap_area = self.getTotalArea(overlap_boxes)
 
 #		print(answer_area)
 #		print(guess_area)
-#		print(overlap_area)		
-		wrong_pixels = answer_area + guess_area - (2 * overlap_area)
-		pic_size = x*y
-		cost = wrong_pixels/pic_size*100
-		return cost
+#		print(overlap_area)
+
+		pic_size = x * y
+		percent_true_lost = ( answer_area - overlap_area ) / pic_size * 100
+		percent_false_gained = ( guess_area - overlap_area ) / pic_size * 100
+		cost = percent_true_lost + percent_false_gained
+		return [percent_true_lost, percent_false_gained, cost]
 
 	def getTotalArea(self, a):
 		area = 0
@@ -33,8 +36,11 @@ class Cost:
 
 	def removeOverlap(self, a, temp, reduce_a):
 		overlap = []
+		if len(temp) == 0:
+			temp.append(a.pop(0))
+
 		for i, box_a in enumerate(a):
-			#append_a = True
+			append_a = True
 			j = 0
 			while j < len(temp):
 				#print(i,j)
@@ -67,26 +73,27 @@ class Cost:
 				elif xy[4] == 2:
 					#keep t, keep a but in two pieces, shift on the values that == 1
 					#xy2 = self.getOverlapPositions(box_t, box_a)
-					#if xy2[4] == 1:
-					#	self.shiftBox(temp[j], a[i], xy2, 1)
-					#	continue
+					#if xy2[0:4] == [1,1,0,0] or xy2[0:4] == [0,0,1,1]:
+					#	m,n = self.splitBox(temp[j], a[i], xy)
+					#else:
 					m,n,l = self.makeTwoBoxes(temp[j], a[i], xy, 0)
-					if self.getBoxArea(m) > 0:
+					if self.getBoxArea(l) > 0:
+						overlap.append(l)
+					if len(m) > 0 and self.getBoxArea(m) > 0:
 						a.append(m)
-					if self.getBoxArea(n) > 0:
+					if len(n) > 0 and self.getBoxArea(n) > 0:
 						a.append(n)
-					overlap.append(l)
+					append_a = False
 					break
 				else: #xy[4] == 4:  Only keep t
 					overlap.append(box_a)
 					break
 
 				j += 1
-			#if append_a:
-			if reduce_a:
+			if reduce_a and append_a:
 				temp.append(box_a)
-		a = temp	
-		return overlap
+		#a = temp
+		return [temp, overlap]
 
 
 
@@ -127,17 +134,14 @@ class Cost:
 
 		sum = x1 + x2 + y1 + y2
 
-		if sum == 0 and ( in_out[0] == in_out[1] or in_out[2] == in_out[3] ):
+		if (in_out[0] in ['l','g'] and in_out[0] == in_out[1]) or (in_out[2] in ['l','g'] and in_out[2] == in_out[3]):
 			sum = -1
 
-		if sum == 1:
-			if x1 == 1 or x2 == 1:
-				if in_out[2] == in_out[3]:
-					sum = -1
+		#elif sum == 2 and x1 == 1 and x2 == 1 and in_out[2] != in_out[3]:
+		#	sum = -2
 
-			elif y1 == 1 or y2 == 1:
-				if in_out[0] == in_out[1]:
-					sum = -1
+		#elif sum == 2 and y1 == 1 and y2 == 1 and in_out[0] != in_out[1]:
+		#	sum = -2
 
 		return [x1, x2, y1, y2, sum]
 
@@ -163,6 +167,7 @@ class Cost:
 
 	def makeTwoBoxes(self, reference, new, xy, toShift):
 		#print(overlap)
+		box1 = []
 		box2 = []
 		if xy[0:4] == [1,0,0,1]:
 			box2 = [[new[0][0],reference[1][1]], new[1].copy()]
@@ -174,19 +179,45 @@ class Cost:
 			box2 = [new[0].copy(),[new[1][0],reference[0][1]]]
 			new[0][1] = reference[0][1]
 		elif xy[0:4] == [1,0,1,0]:
-			box2 = [new[0].copy(),[reference[1][0],reference[0][1]]]
+			box2 = [new[0].copy(),[new[1][0],reference[0][1]]]
 			new[0][1] = reference[0][1]
+		elif xy[0:4] == [1,1,0,0]:
+			box1 = [new[0].copy(), [new[1][0], reference[0][1]]]
+			box2 = [[new[0][0], reference[1][1]], new[1].copy()]
+			overlap = [[new[0][0], reference[0][1]], [new[1][0], reference[1][1]]]
+			return [box1, box2, overlap]
+		elif xy[0:4] == [0,0,1,1]:
+			box1 = [new[0].copy(), [reference[0][0], new[1][1]]]
+			box2 = [[reference[1][0], new[0][1]], new[1].copy()]
+			overlap = [[reference[0][0], new[0][1]], [reference[1][0], new[1][1]]]
+			return [box1, box2, overlap]
 
 		box1 = new.copy()
 		overlap = self.shiftBox(reference, box1, xy, toShift)
 
 		return[box1,box2,overlap]
 
+	def splitBox(self, reference, new, xy):
+		box1 = [new[0].copy(), new[1].copy()]
+		box2 = [new[0].copy(), new[1].copy()]
+		if xy[0:4] == [1,1,0,0]:
+			box1[1][1] = reference[0][1]
+			box2[0][1] = reference[0][1]
+		else:  #xy[0:4] = [0,0,1,1]
+			box1[1][0] = reference[0][0]
+			box2[0][0] = reference[0][0]
+		return [box1,box2]
+
 
 cost = Cost()
-answer = [ [[2,5],[5,2]]     ]       #7%
-guess = [   [[1,5],[5,1]]    ]
+
+answer = [    [[1,4],[4,1]], [[1,3],[5,2]]   ]  # tl 5 fg 10 cost 15
+guess = [     [[0,6],[4,3]], [[2,5],[3,0]]  ]
 
 
-print(cost.getCost(10,10, answer, guess))
+
+#for i in range(len(answers)):
+#	print(cost.getCost(10,10, answers[i], guesses[i]))
+
+print(cost.getCost(10,10,answer,guess))
 
