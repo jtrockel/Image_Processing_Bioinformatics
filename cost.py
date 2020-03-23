@@ -21,7 +21,7 @@ class Cost:
 				return "error: bad box format"
 
 		for box in guess:
-			if box[0][0] > box[1][0] and box[0][1] < box[1][1]:
+			if box[0][0] < box[1][0] and box[0][1] < box[1][1]:
 				box[0][1], box[1][1] = box[1][1], box[0][1]
 			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
 				return "error: bad box format"
