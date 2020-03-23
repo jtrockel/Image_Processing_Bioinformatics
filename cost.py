@@ -1,6 +1,6 @@
 class Cost:
 
-
+#TODO: be able to handle any x,y ordering rather than just [x1,y2],[x2,y1] and [x1,y1],[x2,y2]
 	def getCost(self, x, y, answer, guess):
 		"""
 		Function for calculating overlap and non-overlap between two sets of boxes on a grid
@@ -14,8 +14,16 @@ class Cost:
 		:return percent_overlap: the percentage of the grid covered by both answer and guess boxes but not covered by one alone  (A intersect B)
 		"""
 		#validate input
-		for box in answer + guess:
-			if box[0][0] > box[1][0] or box[0][1] < box[1][1]:
+		for box in answer:
+			if box[0][0] < box[1][0] and box[0][1] < box[1][1]:
+				box[0][1], box[1][1] = box[1][1], box[0][1]
+			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
+				return "error: bad box format"
+
+		for box in guess:
+			if box[0][0] > box[1][0] and box[0][1] < box[1][1]:
+				box[0][1], box[1][1] = box[1][1], box[0][1]
+			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
 				return "error: bad box format"
 
 		#clean answer boxes
@@ -249,7 +257,7 @@ class Cost:
 
 cost = Cost()
 
-answer =   [  [[0,3],[3,2]],   [[1,4],[2,1]]   ]            #0,9,9   (and changed point orders)
+answer =   [  [[0,2],[3,3]],   [[1,1],[2,4]]   ]            #0,9,9   (and changed point orders)
 guess = [  [[0,4],[3,1]] ,  [[1,5],[4,2]]   ]
 
 
