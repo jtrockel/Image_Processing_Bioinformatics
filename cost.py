@@ -27,12 +27,16 @@ class Cost:
 				return "error: bad box format"
 
 		#clean answer boxes
-		answer, a_overlap = self.removeOverlap(answer, [])
-		answer_area = self.getTotalArea(answer)
+		answer_area = 0
+		if len(answer) > 0:
+			answer, a_overlap = self.removeOverlap(answer, [])
+			answer_area = self.getTotalArea(answer)
 
 		#clean guess boxes
-		guess, g_overlap = self.removeOverlap(guess, [])
-		guess_area = self.getTotalArea(guess)
+		guess_area = 0
+		if len(guess) > 0:
+			guess, g_overlap = self.removeOverlap(guess, [])
+			guess_area = self.getTotalArea(guess)
 
 		#find overlap between answer and guess boxes
 		t, overlap_boxes = self.removeOverlap(answer, guess)
@@ -257,9 +261,8 @@ class Cost:
 
 cost = Cost()
 
-answer =   [  [[0,2],[3,3]],   [[1,1],[2,4]]   ]            #0,9,9   (and changed point orders)
-guess = [  [[0,4],[3,1]] ,  [[1,5],[4,2]]   ]
-
+answer =   [  ]
+guess = [  [[0,2],[2,0]] , [[2,3],[4,2]] , [[1,4],[2,3]], [[0,6],[2,5]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
 
 #for i in range(len(answers)):
 #	print(cost.getCost(10,10, answers[i], guesses[i]))
