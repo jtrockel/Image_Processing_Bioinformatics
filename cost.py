@@ -1,7 +1,7 @@
 class Cost:
 
 #TODO: be able to handle any x,y ordering rather than just [x1,y2],[x2,y1] and [x1,y1],[x2,y2]
-	def getCost(self, x, y, answer, guess):
+	def getCost(self, answer, guess):
 		"""
 		Function for calculating overlap and non-overlap between two sets of boxes on a grid
 		:param x: size of grid in x direction
@@ -267,11 +267,11 @@ class Cost:
 if __name__ == '__main__':
 	cost = Cost()
 
-	answer =   [  ]
-	guess = [  [[0,2],[2,0]] , [[2,3],[4,2]] , [[1,4],[2,3]], [[0,6],[2,5]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
+	answer =   [ [[0,2],[2,0]]  ]
+	guess = [  [[2,3],[4,2]] , [[1,4],[2,3]], [[0,6],[2,5]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
 
 	#for i in range(len(answers)):
 	#	print(cost.getCost(10,10, answers[i], guesses[i]))
 
-	print(cost.getCost(10,10,answer,guess))
+	print(cost.getCost(answer,guess))
 
