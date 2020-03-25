@@ -15,16 +15,22 @@ class Cost:
 		"""
 		#validate input
 		for box in answer:
+			if len(box) != 2:
+				return "error: bad box format: more or less than 2 points per box"
 			if box[0][0] < box[1][0] and box[0][1] < box[1][1]:
 				box[0][1], box[1][1] = box[1][1], box[0][1]
 			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
-				return "error: bad box format"
+				return "error: bad box format: x and y coordinates not in right order: " \
+					   "should be either [[x1,y2],[x2,y1]] or [[x1,y1],[x2,y2]] where x1 < x2 and y1 < y2"
 
 		for box in guess:
+			if len(box) != 2:
+				return "error: bad box format: more or less than 2 points per box"
 			if box[0][0] < box[1][0] and box[0][1] < box[1][1]:
 				box[0][1], box[1][1] = box[1][1], box[0][1]
 			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
-				return "error: bad box format"
+				return "error: bad box format: x and y coordinates not in right order: " \
+					   "should be either [[x1,y2],[x2,y1]] or [[x1,y1],[x2,y2]] where x1 < x2 and y1 < y2"
 
 		#clean answer boxes
 		answer_area = 0
@@ -43,11 +49,10 @@ class Cost:
 		overlap_area = self.getTotalArea(overlap_boxes)
 
 		#calculate return values
-		pic_size = x * y
-		percent_true_lost = ( answer_area - overlap_area ) / pic_size * 100
-		percent_false_gained = ( guess_area - overlap_area ) / pic_size * 100
+		percent_true_lost = ( answer_area - overlap_area ) / answer_area * 100
+		percent_false_gained = ( guess_area - overlap_area ) / answer_area * 100
 		cost = percent_true_lost + percent_false_gained
-		percent_overlap = overlap_area/pic_size * 100
+		percent_overlap = overlap_area/answer_area * 100
 
 		return [percent_true_lost, percent_false_gained, cost, percent_overlap]
 
@@ -259,13 +264,14 @@ class Cost:
 		return [box1,box2]
 
 
-cost = Cost()
+if __name__ == '__main__':
+	cost = Cost()
 
-answer =   [  ]
-guess = [  [[0,2],[2,0]] , [[2,3],[4,2]] , [[1,4],[2,3]], [[0,6],[2,5]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
+	answer =   [  ]
+	guess = [  [[0,2],[2,0]] , [[2,3],[4,2]] , [[1,4],[2,3]], [[0,6],[2,5]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
 
-#for i in range(len(answers)):
-#	print(cost.getCost(10,10, answers[i], guesses[i]))
+	#for i in range(len(answers)):
+	#	print(cost.getCost(10,10, answers[i], guesses[i]))
 
-print(cost.getCost(10,10,answer,guess))
+	print(cost.getCost(10,10,answer,guess))
 
