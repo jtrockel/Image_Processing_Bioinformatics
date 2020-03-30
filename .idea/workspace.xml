@@ -2,108 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04e28a65-4e9e-432d-a837-b69a0225563e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/image_datasets_random/Case 4 C29-18029-22098.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CreateImageDataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/CreateImageDataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair1/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair1/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair1/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair1/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair10/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair10/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair10/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair10/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair11/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair11/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair11/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair11/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair12/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair12/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair12/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair12/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair13/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair13/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair13/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair13/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair14/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair14/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair14/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair14/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair15/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair15/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair15/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair15/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair16/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair16/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair16/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair16/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair17/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair17/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair17/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair17/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair18/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair18/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair18/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair18/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair19/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair19/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair19/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair19/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair2/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair2/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair2/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair2/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair20/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair20/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair20/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair20/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair21/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair21/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair21/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair21/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair22/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair22/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair22/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair22/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair23/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair23/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair23/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair23/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair24/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair24/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair24/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair24/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair25/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair25/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair25/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair25/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair26/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair26/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair26/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair26/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair27/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair27/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair27/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair27/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair28/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair28/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair28/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair28/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair29/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair29/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair29/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair29/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair3/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair3/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair3/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair3/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair30/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair30/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair30/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair30/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair31/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair31/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair31/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair31/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair32/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair32/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair32/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair32/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair33/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair33/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair33/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair33/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair34/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair34/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair34/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair34/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair35/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair35/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair35/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair35/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair36/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair36/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair36/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair36/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair37/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair37/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair37/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair37/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair38/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair38/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair38/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair38/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair39/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair39/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair39/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair39/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair4/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair4/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair4/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair4/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair40/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair40/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair40/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair40/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair41/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair41/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair41/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair41/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair42/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair42/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair42/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair42/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair43/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair43/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair43/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair43/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair44/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair44/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair44/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair44/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair45/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair45/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair45/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair45/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair46/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair46/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair46/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair46/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair47/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair47/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair47/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair47/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair48/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair48/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair48/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair48/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair49/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair49/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair49/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair49/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair5/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair5/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair5/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair5/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair50/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair50/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair50/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair50/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair6/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair6/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair6/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair6/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair7/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair7/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair7/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair7/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair8/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair8/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair8/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair8/edited.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair9/correct.json" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair9/correct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_datasets/training_set_edited/pair9/edited.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image_datasets/training_set_edited/pair9/edited.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +39,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Madma\Documents\School\Winter 2020\BIO465\ProjectCode\Image_Processing_Bioinformatics" />
+      <recent name="C:\Users\Madma\Documents\School\Winter 2020\BIO465\ProjectCode\Image_Processing_Bioinformatics\image_datasets_random\discards\discards\pair0" />
+      <recent name="C:\Users\Madma\Documents\School\Winter 2020\BIO465\ProjectCode\Image_Processing_Bioinformatics\image_datasets_random\pair0" />
+      <recent name="C:\Users\Madma\Documents\School\Winter 2020\BIO465\ProjectCode\Image_Processing_Bioinformatics\image_datasets_random" />
       <recent name="C:\Users\Madma\Documents\School\Winter 2020\BIO465\ProjectCode\Image_Processing_Bioinformatics\image_datasets\zOld_handedited_Pics" />
     </key>
   </component>
@@ -145,9 +50,17 @@
     <configuration />
   </component>
   <component name="WindowStateProjectService">
+    <state x="422" y="83" key="FileChooserDialogImpl" timestamp="1584729238357">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="422" y="83" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1584729238357" />
     <state x="151" y="0" key="SettingsEditor" timestamp="1584481167919">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="151" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1584481167919" />
+    <state x="185" y="142" width="672" height="678" key="search.everywhere.popup" timestamp="1585586265350">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="185" y="142" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1585586265350" />
   </component>
 </project>

@@ -11,6 +11,8 @@ class createImageDataset():
     """
 
     def __init__(self):
+        self.threshold = .25
+        self.ogthreshhold = .50
         pass
 
     """
@@ -45,9 +47,9 @@ class createImageDataset():
         (a decimal between .4 and 1.7) !!we can discuss these values!!
     URL: https://www.geeksforgeeks.org/python-pil-image-resize-method/
     """
-    def resizeImage(self, img, bounds):
-        maxWidth = bounds[2] - bounds[0]
-        maxHeight = bounds[3] - bounds[1]
+    def resizeImage(self, img):
+        maxWidth = 475
+        maxHeight = 475
         stretchBy = random.randint(4, 17)/10
         resizeX = int(img.width * stretchBy)
         resizeY = int(img.height * stretchBy)
@@ -70,86 +72,54 @@ class createImageDataset():
         imgToReturn.paste(pasteCopy, topLCoord)
         return imgToReturn
 
-    def getPasteCoords(self, imgPaste, bounds):
-        potentialCoords = self.createRandomPixelCoords(bounds)
+    def chooseRandomWidth(self):
+        width = random.randint(75, 300)
+        height = random.randint(75, 300)
+        return width, height
 
-        if potentialCoords[0] + imgPaste.width > bounds[2]:
-            shiftX = bounds[2] - (potentialCoords[0] + imgPaste.width)
-            x1 = potentialCoords[0] + shiftX
-            x2 = potentialCoords[0] + shiftX + imgPaste.width - 1
 
-        else:
-            x1 = potentialCoords[0]
-            x2 = potentialCoords[0] + imgPaste.width - 1
-
-        if potentialCoords[1] + imgPaste.height > bounds[3]:
-            shiftY = bounds[3] - (potentialCoords[1] + imgPaste.width)
-            y1 = potentialCoords[1] + shiftY
-            y2 = potentialCoords[1] + shiftY + imgPaste.height - 1
-
-        else:
-            y1 = potentialCoords[1]
-            y2 = potentialCoords[1] + imgPaste.height - 1
-
-        return self.ptsWithinBounds(bounds, (x1, y1, x2, y2))
-
-    def createRandomPixelCoords(self, bounds):
+    def createRandomPixelCoords(self, bounds, width, height):
         x1 = random.randint(bounds[0], bounds[2])
         y1 = random.randint(bounds[1], bounds[3])
-
-        x2 = random.randint(bounds[0], bounds[2])
-        y2 = random.randint(bounds[1], bounds[3])
-
-        if x1 == x2:
-            print("THEY WERE EQUAL???")
-            x2 = random.randint(bounds[0], bounds[2])
-
-        if x1 < x2:
-            if abs(x2-x1) < 50:
-                x2 = x1+50
-            if y1 == y2:
-                y2 += random.randint(bounds[1], bounds[3])
-            if y1 < y2:
-                if abs(y2-y1) < 50:
-                    y2 = y1+50
-                return self.ptsWithinBounds(bounds, (x1, y1, x2, y2))
-            else:
-                if abs(y2-y1) < 50:
-                    y1 = y2+50
-                return self.ptsWithinBounds(bounds, (x1, y2, x2, y1))
-
-        else:
-            if abs(x2-x1) < 50:
-                x1 = x2+50
-            if y1 == y2:
-                y2 += random.randint(bounds[1], bounds[3])
-            if y1 < y2:
-                if abs(y2-y1) < 50:
-                    y2 = y1+50
-                return self.ptsWithinBounds(bounds, (x2, y1, x1, y2))
-            else:
-                if abs(y2-y1) < 50:
-                    y1 = y2+50
-                return self.ptsWithinBounds(bounds, (x2, y2, x1, y1))
-
-    def ptsWithinBounds(self, bounds, points):
-        if bounds[2] < points[2]:
-            tmp = bounds[2] - points[2]
-            x1 = points[0] + tmp
-            x2 = points[2] + tmp
-        else:
-            x1 = points[0]
-            x2 = points[2]
-
-        if bounds[3] < points[3]:
-            tmp = bounds[3] - points[3]
-            y1 = points[1] + tmp
-            y2 = points[3] + tmp
-        else:
-            y1 = points[1]
-            y2 = points[3]
+        x2 = x1+width
+        y2 = y1+height
 
         return x1, y1, x2, y2
+
+
+    def determinePixelHomogeneity(self, picture):
+        # print("indeterminePixelHomogeneity")
+        pixelMap = picture.load()
+        mapOPix = {}
+        for i in range(picture.size[0]):
+            for j in range(picture.size[1]):
+                key = pixelMap[i,j]
+                if key in mapOPix:
+                    mapOPix[key] += 1
+                else:
+                    mapOPix[key] = 1
+
+        maxVal = 0
+
+        for val in mapOPix.values():
+            if val > maxVal:
+                maxVal = val
+
+        # print(maxVal)
+        homogeneity = maxVal/(picture.size[0]*picture.size[1])
+        return homogeneity
+
+    def filterOGPics(self, subdir, images):
+        counter = 0
+        for image in images:
+            counter += 1
+            # print(counter)
+            img = Image.open(subdir + "\\" + image)
+            homogeneity = self.determinePixelHomogeneity(img)
+            if homogeneity > self.ogthreshhold:
+                if not os.path.exists(subdir + '\\discards'):
+                    os.makedirs(subdir + '\\discards')
+                os.replace(subdir + '\\' + image, subdir + '\\discards\\' + image)
 
     def createEditedPic(self, name1, name2, subdir):
         # open the images
@@ -158,24 +128,8 @@ class createImageDataset():
         img2 = Image.open(subdir + "\\" + name2)
         imgBase = img2.copy()
 
-        # decide which edits to make
-        hHeight = (img1.height-1)//2
-        hWidth = (img1.width-1)//2
-        height = img1.height-1
-        width = img1.width-1
-
-        hHeightb = (imgBase.height-1)//2
-        hWidthb = (imgBase.width-1)//2
-        heightb = imgBase.height-1
-        widthb = imgBase.width-1
-
-        availableBounds = [(0, 0, hWidth, hHeight), (0, hHeight, hWidth, height),
-                           (hWidth, 0, width, hHeight), (hWidth, hHeight, width, height)]
-        availableBoundsPaste = [(0, 0, hWidthb, hHeightb), (0, hHeightb, hWidthb, heightb),
-                           (hWidthb, 0, widthb, hHeightb), (hWidthb, hHeightb, widthb, heightb)]
-
-        random.shuffle(availableBounds)
-        random.shuffle(availableBoundsPaste)
+        boundsImg1 = (0, 0, img1.width-300, img1.height-300)
+        boundsImg2 = (0, 0, img2.width-300, img2.height-300)
 
         coordsFromCuts = []
         coordsFromPastes = []
@@ -184,11 +138,18 @@ class createImageDataset():
 
         # make edits
         if mirror:
-            print("Mirror")
+            # print("Mirror")
+            homogeneity = 1
+            cutMirror = None
+            mirrorCoord = None
             # cut and mirror image
-            mirrorCoord = self.createRandomPixelCoords(availableBounds[0])
+            while homogeneity > self.threshold:
+                width, height = self.chooseRandomWidth()
+                mirrorCoord = self.createRandomPixelCoords(boundsImg1, width, height)
+                cutMirror = self.cutPieceFromImage(img1, mirrorCoord)
+                homogeneity = self.determinePixelHomogeneity(cutMirror)
+
             coordsFromCuts.append(mirrorCoord)
-            cutMirror = self.cutPieceFromImage(img1, mirrorCoord)
             cutMirror = self.mirrorImage(cutMirror)
 
             if mirror > 1:
@@ -197,36 +158,52 @@ class createImageDataset():
                 if r:
                     cutMirror = self.rotateImage(cutMirror)
                 if s:
-                    cutMirror = self.resizeImage(cutMirror, availableBoundsPaste[0])
+                    cutMirror = self.resizeImage(cutMirror)
 
-            mirrorCoordPaste = self.getPasteCoords(cutMirror, availableBoundsPaste[0])
+            mirrorCoordPaste = self.createRandomPixelCoords(boundsImg2, cutMirror.width, cutMirror.height)
             coordsFromPastes.append(mirrorCoordPaste)
             imgBase = self.pasteImage(imgBase, cutMirror, (mirrorCoordPaste[0], mirrorCoordPaste[1]))
 
         if rotate:
-            print("rotate")
-            rotateCoord = self.createRandomPixelCoords(availableBounds[1])
+            # print("rotate")
+            homogeneity = 1
+            cutRotate = None
+            rotateCoord = None
+
+            while homogeneity > self.threshold:
+                width, height = self.chooseRandomWidth()
+                rotateCoord = self.createRandomPixelCoords(boundsImg1, width, height)
+                cutRotate = self.cutPieceFromImage(img1, rotateCoord)
+                homogeneity = self.determinePixelHomogeneity(cutRotate)
+
             coordsFromCuts.append(rotateCoord)
-            cutRotate = self.cutPieceFromImage(img1, rotateCoord)
-            cutRotate = self.mirrorImage(cutRotate)
+            cutRotate = self.rotateImage(cutRotate)
 
             if rotate > 1:
                 mr, r, s = self.randomizeEdits()
                 if mr:
                     cutRotate = self.mirrorImage(cutRotate)
                 if s:
-                    cutRotate = self.resizeImage(cutRotate, availableBoundsPaste[1])
+                    cutRotate = self.resizeImage(cutRotate)
 
-            rotateCoordPaste = self.getPasteCoords(cutRotate, availableBoundsPaste[1])
+            rotateCoordPaste = self.createRandomPixelCoords(boundsImg2, cutRotate.width, cutRotate.height)
             coordsFromPastes.append(rotateCoordPaste)
             imgBase = self.pasteImage(imgBase, cutRotate, (rotateCoordPaste[0], rotateCoordPaste[1]))
 
         if stretch:
-            print("Stretch")
-            stretchCoord = self.createRandomPixelCoords(availableBounds[2])
+            # print("Stretch")
+            homogeneity = 1
+            cutStretch = None
+            stretchCoord = None
+
+            while homogeneity > self.threshold:
+                width, height = self.chooseRandomWidth()
+                stretchCoord = self.createRandomPixelCoords(boundsImg1, width, height)
+                cutStretch = self.cutPieceFromImage(img1, stretchCoord)
+                homogeneity = self.determinePixelHomogeneity(cutStretch)
+
             coordsFromCuts.append(stretchCoord)
-            cutStretch = self.cutPieceFromImage(img1, stretchCoord)
-            cutStretch = self.resizeImage(cutStretch, availableBoundsPaste[2])
+            cutStretch = self.resizeImage(cutStretch)
 
             if stretch > 1:
                 mr, r, s = self.randomizeEdits()
@@ -235,7 +212,7 @@ class createImageDataset():
                 if r:
                     cutStretch = self.rotateImage(cutStretch)
 
-            stretchCoordPaste = self.getPasteCoords(cutStretch, availableBoundsPaste[2])
+            stretchCoordPaste = self.createRandomPixelCoords(boundsImg2, cutStretch.width, cutStretch.height)
             coordsFromPastes.append(stretchCoordPaste)
             imgBase = self.pasteImage(imgBase, cutStretch, (stretchCoordPaste[0], stretchCoordPaste[1]))
 
@@ -259,8 +236,6 @@ class createImageDataset():
             "edited" : pasteCoords
         }
 
-        print(data)
-
         with open(subdir + "\\" + "correct.json", 'w') as fp:
             json.dump(data, fp)
 
@@ -283,8 +258,24 @@ def main():
     root = 'image_datasets\\training_set_edited'
     root2 = 'image_datasets\\testing_set_edited'
 
+    root1 = 'image_datasets_random\\train'
+
     cid = createImageDataset()
-    for subdir, dirs, files in os.walk(root2):
+
+    # for subdir, dirs, files in os.walk(root1):
+    #     cid.filterOGPics(subdir, files)
+
+    # for subdir, dirs, files in os.walk(root1):
+    #     random.shuffle(files)
+    #     for i in range(len(files)//2):
+    #         if not os.path.exists(subdir + '\\pair' + str(i)):
+    #             os.makedirs(subdir + '\\pair' + str(i))
+    #         os.replace(subdir + '\\' + files[i], subdir + '\\pair' + str(i) + '\\' + files[i])
+    #         os.replace(subdir + '\\' + files[-(i + 1)], subdir + '\\pair' + str(i) + '\\' + files[-(i + 1)])
+    #     break
+
+
+    for subdir, dirs, files in os.walk(root1):
         if len(dirs) == 0:
             if os.path.exists(subdir + "\\correct.json"):
                 os.remove(subdir + "\\correct.json")
@@ -293,7 +284,10 @@ def main():
             if os.path.exists(subdir + "\\truth.jpg"):
                 os.remove(subdir + "\\truth.jpg")
 
-    for subdir, dirs, files in os.walk(root2):
+    counter = 0
+    for subdir, dirs, files in os.walk(root1):
+        counter += 1
+        print(subdir)
         if len(dirs) == 0:
             cid.createEditedPic(files[0], files[1], subdir)
 
