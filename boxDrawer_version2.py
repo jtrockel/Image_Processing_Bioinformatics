@@ -71,10 +71,11 @@ class BoxDrawer:
         """
         #p = self.findBoxes(self.get_x_y_and_index(self.kp))
         for points in p:
+            if len(points) <= self.minNumToAccept:continue
             xSorted = sorted(points, key=lambda x: x[0])
             ySorted = sorted(points, key=lambda x: x[1])
             add = 5
-            if len(xSorted)<=self.minNumToAccept:continue
+            # if len(xSorted)<=self.minNumToAccept:continue
             # if len(xSorted) == 1:
             #     if len(xSorted[0])==0: continue
             #     add = 5
@@ -82,6 +83,8 @@ class BoxDrawer:
             x1 = xSorted[-1][0] + add
             y0 = ySorted[0][1] - add
             y1 = ySorted[-1][1] + add
+            if self.minNumToAccept!=0:
+                if int(x0)+add==int(x1)-add or int(y0)+add ==int(y1)-add: continue
             cv.line(self.img, (int(x0), int(y0)), (int(x0), int(y1)), self.color,self.lineWidth)
             cv.line(self.img, (int(x1), int(y0)), (int(x1), int(y1)), self.color,self.lineWidth)
             cv.line(self.img, (int(x0), int(y0)), (int(x1), int(y0)), self.color,self.lineWidth)
