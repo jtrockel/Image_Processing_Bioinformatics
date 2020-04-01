@@ -196,7 +196,7 @@ class OptimizeParams:
             return np.mean(cost)
         return cost
 
-    def optimizeOrb(self,params,n=10, test=False):
+    def optimizeOrb(self,params,n=50, test=False):
         st = time.time()
         self.currentParams = params
         self.currentAlg = "ORB"
@@ -221,7 +221,7 @@ class OptimizeParams:
 
     def optimizeAFunction(self, func, bestGuess, bounds):
         st = time.time()
-        res = dual_annealing(func, bounds, maxiter=1)
+        res = dual_annealing(func, bounds, maxiter=50)
         print(res)
         print(f"Total Time Elapsed: {time.time()-st}")
         return res.x
