@@ -104,6 +104,7 @@ class OptimizeParams:
                 "line_width":10
                 }
 
+
     def fillerCost(self,arr1,arr2):
         return len(arr1) - len(arr2)
 
@@ -243,33 +244,30 @@ class OptimizeParams:
 
     def minimizeAll(self):
         self.optimizing = True
-        self.finalSurfParams = self.optimizeAFunction(self.optimizeSurf, self.bestGuessSurf, self.surfBounds)
-        self.finalSiftParams = self.optimizeAFunction(self.optimizeSift, self.bestGuessSift, self.siftBounds)
-        self.finalOrbParams = self.optimizeAFunction(self.optimizeOrb, self.bestGuessOrb, self.orbBounds)
-        orbParams = list(self.finalOrbParams)
-        siftParams = list(self.finalSiftParams)
-        surfParams = list(self.finalSurfParams)
+        # self.finalSurfParams = self.optimizeAFunction(self.optimizeSurf, self.bestGuessSurf, self.surfBounds)
+        # self.finalSiftParams = self.optimizeAFunction(self.optimizeSift, self.bestGuessSift, self.siftBounds)
+        # self.finalOrbParams = self.optimizeAFunction(self.optimizeOrb, self.bestGuessOrb, self.orbBounds)
+        # orbParams = list(self.finalOrbParams)
+        # siftParams = list(self.finalSiftParams)
+        # surfParams = list(self.finalSurfParams)
 
+        siftParams = self.bestGuessSift
         d = {
-            'orb': orbParams,
             'sift':siftParams,
-            'surf':surfParams
         }
-        with open('finalParams.json', 'w') as fp:
+        with open('finalParamsSift.json', 'w') as fp:
             json.dump(d, fp)
-        res_orb = self.optimizeOrb(orbParams, -1, test=True)
-        res_surf = self.optimizeSurf(surfParams,-1,test=True)
         res_sift = self.optimizeSift(siftParams,-1,test=True)
         d = {
-            'orbRes': res_orb,
-            'surfRes': res_surf,
             'siftRes': res_sift
         }
 
-        with open('finalTestCosts.json','w') as fp:
+        with open('finalTestCostsSift.json','w') as fp:
             json.dump(d,fp)
 
 if __name__ == "__main__":
     op = OptimizeParams('image_datasets_random/train/', 'image_datasets_random/test/')
     op.minimizeAll()
-
+    # op.optimizeSurf(op.bestGuessSurf,10)
+    # op.optimizeSift(op.bestGuessSift,10)
+    # op.optimizeOrb(op.bestGuessOrb,10)
