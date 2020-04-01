@@ -221,7 +221,7 @@ class OptimizeParams:
 
     def optimizeAFunction(self, func, bestGuess, bounds):
         st = time.time()
-        res = dual_annealing(func, bounds, maxiter=50)
+        res = dual_annealing(func, bounds, maxiter=5)
         print(res)
         print(f"Total Time Elapsed: {time.time()-st}")
         return res.x
