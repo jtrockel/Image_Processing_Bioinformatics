@@ -221,7 +221,7 @@ class OptimizeParams:
 
     def optimizeAFunction(self, func, bestGuess, bounds):
         st = time.time()
-        res = dual_annealing(func, bounds, maxiter=1)
+        res = dual_annealing(func, bounds, maxiter=50)
         print(res)
         print(f"Total Time Elapsed: {time.time()-st}")
         return res.x
@@ -244,14 +244,8 @@ class OptimizeParams:
 
     def minimizeAll(self):
         self.optimizing = True
-        # self.finalSurfParams = self.optimizeAFunction(self.optimizeSurf, self.bestGuessSurf, self.surfBounds)
-        # self.finalSiftParams = self.optimizeAFunction(self.optimizeSift, self.bestGuessSift, self.siftBounds)
-        # self.finalOrbParams = self.optimizeAFunction(self.optimizeOrb, self.bestGuessOrb, self.orbBounds)
-        # orbParams = list(self.finalOrbParams)
-        # siftParams = list(self.finalSiftParams)
-        # surfParams = list(self.finalSurfParams)
-
-        siftParams = self.bestGuessSift
+        self.finalSiftParams = self.optimizeAFunction(self.optimizeSift, self.bestGuessSift, self.siftBounds)
+        siftParams = list(self.finalSiftParams)
         d = {
             'sift':siftParams,
         }
@@ -268,6 +262,3 @@ class OptimizeParams:
 if __name__ == "__main__":
     op = OptimizeParams('image_datasets_random/train/', 'image_datasets_random/test/')
     op.minimizeAll()
-    # op.optimizeSurf(op.bestGuessSurf,10)
-    # op.optimizeSift(op.bestGuessSift,10)
-    # op.optimizeOrb(op.bestGuessOrb,10)

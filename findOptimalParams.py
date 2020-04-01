@@ -220,7 +220,7 @@ class OptimizeParams:
 
     def optimizeAFunction(self, func, bestGuess, bounds):
         st = time.time()
-        res = dual_annealing(func, bounds, maxiter=1)
+        res = dual_annealing(func, bounds, maxiter=50)
         print(res)
         print(f"Total Time Elapsed: {time.time()-st}")
         return res.x
@@ -266,7 +266,7 @@ class OptimizeParams:
             'siftRes': res_sift
         }
 
-        with open('finalTestCosts.json','w') as fp:
+        with open('finalTestCosts.json','w') as fp: 
             json.dump(d,fp)
 
 if __name__ == "__main__":
