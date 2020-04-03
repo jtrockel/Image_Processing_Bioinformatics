@@ -243,9 +243,13 @@ class OptimizeParams:
 
     def minimizeAll(self):
         self.optimizing = True
+        print("\n\nSTARTING ORB")
         self.finalOrbParams = self.optimizeAFunction(self.optimizeOrb, self.bestGuessOrb, self.orbBounds)
+        print("\n\nSTARTING SIFT")
         self.finalSiftParams = self.optimizeAFunction(self.optimizeSift, self.bestGuessSift, self.siftBounds)
+        print("\n\nSTARTING SURF")
         self.finalSurfParams = self.optimizeAFunction(self.optimizeSurf, self.bestGuessSurf, self.surfBounds)
+        print("\n\nDONE OPTIMIZING\n\n")
         
         orbParams = list(self.finalOrbParams)
         siftParams = list(self.finalSiftParams)
@@ -279,6 +283,6 @@ class OptimizeParams:
             json.dump(d,fp)
 
 if __name__ == "__main__":
-    op = OptimizeParams('image_datasets_random/train/', 'image_datasets_random/test/')
+    op = OptimizeParams('/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/train/', '/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/test/')
     op.minimizeAll()
 
