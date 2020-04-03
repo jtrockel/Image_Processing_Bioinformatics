@@ -173,7 +173,7 @@ class OptimizeParams:
             return np.mean(cost)
         return cost
 
-    def optimizeSift(self,params,n=20, test=False):
+    def optimizeSift(self,params,n=50, test=False):
         st = time.time()
         self.currentParams = params
         self.currentAlg = "SIFT"
