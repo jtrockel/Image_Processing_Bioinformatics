@@ -173,7 +173,7 @@ class OptimizeParams:
             return np.mean(cost)
         return cost
 
-    def optimizeSift(self,params,n=5, test=False):
+    def optimizeSift(self,params,n=20, test=False):
         st = time.time()
         self.currentParams = params
         self.currentAlg = "SIFT"
@@ -184,11 +184,11 @@ class OptimizeParams:
         else:
             pairedFoulders = self.testFiles
             self.findAllCosts = True
-        
-        p = multiprocess.Pool()
-        cost = p.map(self.callSingleMatch, pairedFoulders)
-        p.close()
-        p.join()
+        cost = [self.callSingleMatch(p) for p in pairedFoulders]
+        # p = multiprocess.Pool()
+        # cost = p.map(self.callSingleMatch, pairedFoulders)
+        # p.close()
+        # p.join()
         print(len(cost))
         print(f"params used: {params}")
         print(f"Time for one itteration: {time.time()-st}")
