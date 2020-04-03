@@ -262,6 +262,6 @@ class OptimizeParams:
             json.dump(d,fp)
 
 if __name__ == "__main__":
-    op = OptimizeParams('image_datasets_random/train/', 'image_datasets_random/test/')
-    # op = OptimizeParams('/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/train/', '/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/test/')
+    # op = OptimizeParams('image_datasets_random/train/', 'image_datasets_random/test/')
+    op = OptimizeParams('/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/train/', '/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/test/')
     op.minimizeAll()
