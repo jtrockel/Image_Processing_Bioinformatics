@@ -184,11 +184,11 @@ class OptimizeParams:
         else:
             pairedFoulders = self.testFiles
             self.findAllCosts = True
-        cost = [self.callSingleMatch(p) for p in pairedFoulders]
-        # p = multiprocess.Pool()
-        # cost = p.map(self.callSingleMatch, pairedFoulders)
-        # p.close()
-        # p.join()
+        # cost = [self.callSingleMatch(p) for p in pairedFoulders]
+        p = multiprocess.Pool()
+        cost = p.map(self.callSingleMatch, pairedFoulders)
+        p.close()
+        p.join()
         print(len(cost))
         print(f"params used: {params}")
         print(f"Time for one itteration: {time.time()-st}")
