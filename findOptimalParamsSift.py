@@ -104,7 +104,6 @@ class OptimizeParams:
                 "line_width":10
                 }
 
-
     def fillerCost(self,arr1,arr2):
         return len(arr1) - len(arr2)
 
@@ -160,10 +159,12 @@ class OptimizeParams:
         else:
             pairedFoulders = self.testFiles
             self.findAllCosts = True
-        p = multiprocess.Pool()
-        cost = p.map(self.callSingleMatch, pairedFoulders)
-        p.close()
-        p.join()
+
+        cost = [self.callSingleMatch(f) for f in pairedFoulders]
+        # p = multiprocess.Pool()
+        # cost = p.map(self.callSingleMatch, pairedFoulders)
+        # p.close()
+        # p.join()
         print(f"params used: {params}")
         print(f"Time for one itteration: {time.time()-st}")
         if not test: print(f"cost of this iteration: {np.mean(cost)}\n")
@@ -172,8 +173,7 @@ class OptimizeParams:
             return np.mean(cost)
         return cost
 
-    def optimizeSift(self,params,n=50, test=False):
-        print(params)
+    def optimizeSift(self,params,n=5, test=False):
         st = time.time()
         self.currentParams = params
         self.currentAlg = "SIFT"
@@ -184,10 +184,12 @@ class OptimizeParams:
         else:
             pairedFoulders = self.testFiles
             self.findAllCosts = True
+        
         p = multiprocess.Pool()
         cost = p.map(self.callSingleMatch, pairedFoulders)
         p.close()
         p.join()
+        print(len(cost))
         print(f"params used: {params}")
         print(f"Time for one itteration: {time.time()-st}")
         if not test: print(f"cost of this iteration: {np.mean(cost)}\n")
@@ -261,4 +263,5 @@ class OptimizeParams:
 
 if __name__ == "__main__":
     op = OptimizeParams('image_datasets_random/train/', 'image_datasets_random/test/')
+    # op = OptimizeParams('/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/train/', '/fslhome/itaylor3/BIO465/Image_Processing/image_datasets_random/test/')
     op.minimizeAll()
