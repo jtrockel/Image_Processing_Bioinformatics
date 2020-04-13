@@ -3,6 +3,18 @@ class Cost:
 #TODO: be able to handle any x,y ordering rather than just [x1,y2],[x2,y1] and [x1,y1],[x2,y2]
 	def getCost(self, answer, guess):
 		"""
+		Function to quickly calculate both total pixel errors and binary errors.
+		"""
+		self.validateInput(answer)
+		self.validateInput(guess)
+		pixelResults = self.getPixelCost(answer, guess)
+		binaryResults = self.getBinaryCost(answer, guess)
+
+		return pixelResults + binaryResults
+
+
+	def getPixlelCost(self, answer, guess):
+		"""
 		Function for calculating overlap and non-overlap between two sets of boxes on a grid
 		:param x: size of grid in x direction
 		:param y: size of grid in y direction
@@ -10,28 +22,9 @@ class Cost:
 		:param guess: 3d array of points in the same format as param answer.
 		:return percent_true_lost: the percentage of the grid covered by the answer boxes and not covered by the guess boxes (A complement B)
 		:return percent_false_gained: the percentage of the grid covered by the guess boxes not covered by the answer boxes (B complement A)
-		:return cost: the total percentage of the grid covered by answer or guess boxes but not by both (A complement B + B complement A
+		:return cost: the total percentage of the grid covered by answer or guess boxes but not by both (percent_true_lost + percent_false_gained) (A complement B + B complement A)
 		:return percent_overlap: the percentage of the grid covered by both answer and guess boxes but not covered by one alone  (A intersect B)
 		"""
-		#validate input
-		for box in answer:
-			if len(box) != 2:
-				return "error: bad box format: more or less than 2 points per box"
-			if box[0][0] < box[1][0] and box[0][1] < box[1][1]:
-				box[0][1], box[1][1] = box[1][1], box[0][1]
-			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
-				return "error: bad box format: x and y coordinates not in right order: " \
-					   "should be either [[x1,y2],[x2,y1]] or [[x1,y1],[x2,y2]] where x1 < x2 and y1 < y2"
-
-		for box in guess:
-			if len(box) != 2:
-				return "error: bad box format: more or less than 2 points per box"
-			if box[0][0] < box[1][0] and box[0][1] < box[1][1]:
-				box[0][1], box[1][1] = box[1][1], box[0][1]
-			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
-				return "error: bad box format: x and y coordinates not in right order: " \
-					   "should be either [[x1,y2],[x2,y1]] or [[x1,y1],[x2,y2]] where x1 < x2 and y1 < y2"
-
 		#clean answer boxes
 		answer_area = 0
 		if len(answer) > 0:
@@ -57,11 +50,55 @@ class Cost:
 		return [percent_true_lost, percent_false_gained, cost, percent_overlap]
 
 
+	def getBinaryCost(self, answer, guess):
+		"""Function for counting how many boxes we found (even if the areas aren't exactly the same)
+		and how many boxes we made that do not overlap at all with an answer box.
+		:param answer: same as getCost
+		:param guess: same as getCost
+		:return percent_ans_correct: the percent of answer boxes for which we found at least a partial match
+		:return percent_guess_wrong: the percent of guess boxes which did not hit any part of an answer box
+		"""
+
+		ans_dict = {}
+		guess_dict = {}
+
+		#This loop marks which answer boxes and guess boxes overlap
+		for i, box in enumerate(answer):
+			for j, box2 in enumerate(guess):
+				arr = self.getOverlapPositions(box, box2)
+				if arr[4] != -1:
+					ans_dict[i] = 1
+					guess_dict[j] = 1
+
+		print(guess_dict.values())
+		ans_total = float(sum(ans_dict.values()))
+		guess_total = float(sum(guess_dict.values()))
+
+		percent_ans_correct = ans_total/len(answer) * 100
+		percent_guess_wrong = (1 - guess_total/len(guess)) * 100
+
+		return[percent_ans_correct, percent_guess_wrong]
+
+
+        
+	def validateInput(self, array):
+		for box in array:
+			if len(box) != 2:
+				print("error: bad box format: more or less than 2 points per box")
+				sys.exit()
+			if box[0][0] < box[1][0] and box[0][1] < box[1][1]:
+				box[0][1], box[1][1] = box[1][1], box[0][1]
+			elif box[0][0] > box[1][0] or box[0][1] < box[1][1]:
+				print("error: bad box format: x and y coordinates not in right order: " \
+					   "should be either [[x1,y2],[x2,y1]] or [[x1,y1],[x2,y2]] where x1 < x2 and y1 < y2")
+				sys.exit()
+
 	def getTotalArea(self, a):
 		"""
 		Function for finding the total area of a grid covered by a list of boxes
 		:param a: Array of points in the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2
-		:return: area of grid covered by array of points a
+		:return: area of grid covered by array of points a.
+        Note that if the boxes overlap, the overlapped area will be counted twice.
 		"""
 		area = 0
 		for box in a:
@@ -80,14 +117,14 @@ class Cost:
 
 	def removeOverlap(self, a, temp):
 		"""
-		Function for taking one set or two sets of boxes on a grid and reducing them to a new set of boxes that cover the same
+		Function for taking one set or two sets of boxes on a grid and reducing it (or them) to a new set of boxes that cover the same
 		area but do not overlap, plus a list of boxes covering the overlap regions removed.  If two lists are provided,
 		neither individual list can contain overlapping regions, but boxes from one list may overlap with boxes from the other list.
-		:param a: Array of points in the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2
+		:param a: Array of points in the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2  (in other words, the bottom left and upper right corners)
 		:param temp: Either an empty list [] or an array of points in the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2
 		if an empty list is provided, the function will find overlaps within array a alone.  If an array of points is provided,
 		then the function will find places where array a overlaps with array temp.
-		:return temp: if one array was provided, this is the "cleaned" version of the array.  If two were provided, this value is meaningless.
+		:return temp: if one input array was provided, this is the "cleaned" version of the array.  If two were provided, this value is meaningless.
 		Array of points in the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2
 		:return overlap: Array of boxes that cover the area where "a" overlapped with itself if temp was empty, or where "a"
 		overlapped with temp if temp was non empty.  Array of points in the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2
@@ -187,8 +224,8 @@ class Cost:
 		Function to reduce a box into one that does not overlap with the other given box, and return the overlapping portion.
 		The two boxes must relate in such a way that exactly three of the edges of one box are inside of the other.
 		:param reference: A box of the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2.  This box will not change.
-		:param new: A box of the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2.  This box will be split into two
-		new boxes.
+		:param new: A box of the form [[x1,y2],[x2,y1]] where x1 < x2 and y1 < y2. This is the box that has three edges inside of the reference box.
+		 After running the function, its value will be only the portion that does not overlap with reference.
 		:param xy: The return of running getOverlapPositions on a, t
 		:param toShift: Integer 0 or 1, 1 meaning whether to cut a on the line that cuts through t, or 1 meaning
 		to cut on the line that of t where the equivalient line of a does not cut through t.
@@ -268,10 +305,13 @@ if __name__ == '__main__':
 	cost = Cost()
 
 	answer =   [ [[0,2],[2,0]]  ]
-	guess = [  [[2,3],[4,2]] , [[1,4],[2,3]], [[0,6],[2,5]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
+	guess = [  [[2,2],[4,3]] , [[1,4],[2,3]], [[0,6],[2,0]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
 
 	#for i in range(len(answers)):
 	#	print(cost.getCost(10,10, answers[i], guesses[i]))
 
-	print(cost.getCost(answer,guess))
+
+#print(cost.getCost(answer,guess))
+
+print(cost.getBinaryCost(answer, guess))
 
