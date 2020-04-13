@@ -311,7 +311,7 @@ if __name__ == '__main__':
 	#	print(cost.getCost(10,10, answers[i], guesses[i]))
 
 
-#print(cost.getCost(answer,guess))
+	#print(cost.getCost(answer,guess))
 
-print(cost.getBinaryCost(answer, guess))
+	print(cost.getBinaryCost(answer, guess))
 
