@@ -1,3 +1,5 @@
+import copy
+
 class Cost:
 
 #TODO: be able to handle any x,y ordering rather than just [x1,y2],[x2,y1] and [x1,y1],[x2,y2]
@@ -7,13 +9,14 @@ class Cost:
 		"""
 		self.validateInput(answer)
 		self.validateInput(guess)
-		pixelResults = self.getPixelCost(answer, guess)
+		
 		binaryResults = self.getBinaryCost(answer, guess)
+		pixelResults = self.getPixelCost(answer, guess)
 
 		return pixelResults + binaryResults
 
 
-	def getPixlelCost(self, answer, guess):
+	def getPixelCost(self, answer, guess):
 		"""
 		Function for calculating overlap and non-overlap between two sets of boxes on a grid
 		:param x: size of grid in x direction
@@ -70,9 +73,9 @@ class Cost:
 					ans_dict[i] = 1
 					guess_dict[j] = 1
 
-		print(guess_dict.values())
 		ans_total = float(sum(ans_dict.values()))
 		guess_total = float(sum(guess_dict.values()))
+
 
 		percent_ans_correct = ans_total/len(answer) * 100
 		percent_guess_wrong = (1 - guess_total/len(guess)) * 100
@@ -304,8 +307,8 @@ class Cost:
 if __name__ == '__main__':
 	cost = Cost()
 
-	answer =   [ [[0,2],[2,0]]  ]
-	guess = [  [[2,2],[4,3]] , [[1,4],[2,3]], [[0,6],[2,0]], [[3,6],[4,4]]   ]       #  # 9, 12, 21
+	answer =   [  [[523, 710], [698, 1010]]  ]
+	guess = [  [[538, 787],  [568, 823]]  ]
 
 	#for i in range(len(answers)):
 	#	print(cost.getCost(10,10, answers[i], guesses[i]))
@@ -313,5 +316,5 @@ if __name__ == '__main__':
 
 	#print(cost.getCost(answer,guess))
 
-	print(cost.getBinaryCost(answer, guess))
+	print(cost.getCost(answer, guess))
 
