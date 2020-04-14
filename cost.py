@@ -64,6 +64,10 @@ class Cost:
 
 		ans_dict = {}
 		guess_dict = {}
+		if len(guess) == 0:
+			return[0.0,0.0]
+		if len(answer) == 0:
+			return[0.0, 100.0]
 
 		#This loop marks which answer boxes and guess boxes overlap
 		for i, box in enumerate(answer):
@@ -307,8 +311,8 @@ class Cost:
 if __name__ == '__main__':
 	cost = Cost()
 
-	answer =   [  [[523, 710], [698, 1010]]  ]
-	guess = [  [[538, 787],  [568, 823]]  ]
+	answer = [[[77, 384], [323, 609]], [[363, 458], [534, 903]]]
+	guess = [  ]
 
 	#for i in range(len(answers)):
 	#	print(cost.getCost(10,10, answers[i], guesses[i]))
